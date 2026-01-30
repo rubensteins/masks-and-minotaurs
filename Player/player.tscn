@@ -11,10 +11,6 @@
 [ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/ammo_handler.gd" id="6_r5ew0"]
 [ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="9_yhol4"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_j341n"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cue0d"]
-
 [sub_resource type="Animation" id="Animation_xf5fp"]
 length = 0.001
 tracks/0/type = "value"
@@ -83,12 +79,6 @@ font_size = 64
 
 [node name="Player" type="CharacterBody3D" unique_id=1364246139 groups=["player"]]
 script = ExtResource("1_6xdwp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=401238314]
-mesh = SubResource("CapsuleMesh_j341n")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2074059240]
-shape = SubResource("CapsuleShape3D_cue0d")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1141659312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)

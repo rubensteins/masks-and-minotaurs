@@ -21,6 +21,7 @@ class_name Player
 
 @onready var smooth_camera: Camera3D = %SmoothCamera
 @onready var weapon_camera: Camera3D = %WeaponCamera
+@onready var grid: Grid = $"../Grid"
 
 var mouse_motion : Vector2 = Vector2.ZERO
 var is_mouse_captured = false
@@ -36,52 +37,20 @@ func _ready() -> void:
 	weapon_camera_fov = weapon_camera.fov
 
 func _physics_process(delta: float) -> void:
-	handle_camera_rotation()
 	
-	# Add the gravity.
-	if not is_on_floor():
-		if velocity.y >= 0:
-			velocity.y -= gravity * delta
-		else:
-			velocity.y -= gravity * delta * fall_multiplier
-		
-	# Are we running or aiming?
-	var run_multiplier = 2.0 if Input.is_key_pressed(Key.KEY_SHIFT) else 1.0
-	var aim_multiplier = zoom_factor if is_aiming else 1.0
-
-	if Input.is_action_just_pressed("exit_game"):
-		get_tree().quit()
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed * run_multiplier * aim_multiplier
-		velocity.z = direction.z * speed * run_multiplier * aim_multiplier
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed * run_multiplier * aim_multiplier)
-		velocity.z = move_toward(velocity.z, 0, speed * run_multiplier * aim_multiplier)
-
-	move_and_slide()
-
+	if Input.is_action_just_pressed("turn_left"):
+		rotate_y(deg_to_rad(90))
+	
+	if Input.is_action_just_pressed("turn_right"):
+		rotate_y(deg_to_rad(-90))
+	
+	
+	
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_mouse_captured:
-		mouse_motion = -event.relative * mouse_sensitivity \
-			* (zoom_factor if is_aiming else 1.0)
-		
 	if event.is_action("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		is_mouse_captured = false
 		
-func handle_camera_rotation() -> void:
-	rotate_y(mouse_motion.x)
-	camera_pivot.rotate_x(mouse_motion.y)
-	camera_pivot.rotation_degrees.x = clampf(
-		camera_pivot.rotation_degrees.x, -90.0, 90.0)
-		
-	mouse_motion = Vector2.ZERO		
-
 func take_damage(damage : int) -> void:
 	hp -= damage
 
