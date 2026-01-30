@@ -1,59 +1,55 @@
 [gd_scene format=3 uid="uid://suf2i2uxavox"]
 
 [ext_resource type="PackedScene" uid="uid://ciu005bjfafw4" path="res://Player/player.tscn" id="1_3h184"]
+[ext_resource type="Texture2D" uid="uid://ds0fqh0ink5nc" path="res://Assets/Materials/Artboard 1@4x.png" id="1_rjrbw"]
 [ext_resource type="Material" uid="uid://cqm1el0s5ja74" path="res://Assets/Materials/brown_wall.tres" id="2_cojph"]
 [ext_resource type="Script" uid="uid://ch5rimp81n0pb" path="res://grid.gd" id="2_p7lbm"]
 [ext_resource type="Material" uid="uid://s6t7o0ovhh7e" path="res://Assets/Materials/orange.tres" id="4_rvmsc"]
 
-[node name="Sandbox" type="Node3D" unique_id=881767963]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypj6x"]
+albedo_texture = ExtResource("1_rjrbw")
 
-[node name="Player" parent="." unique_id=1364246139 instance=ExtResource("1_3h184")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-speed = 5.0
-jump_height = 1.0
-mouse_sensitivity = 0.001
-gravity = 9.81
-fall_multiplier = 2.0
-max_hp = 100
-zoom_factor = 0.6
-zoom_in_speed = 20.0
-zoom_out_speed = 40.0
+[node name="Sandbox" type="Node3D" unique_id=881767963]
 
 [node name="Grid" type="CSGBox3D" parent="." unique_id=1195405040]
 use_collision = true
 size = Vector3(20, 0.1, 20)
+material = SubResource("StandardMaterial3D_ypj6x")
 script = ExtResource("2_p7lbm")
 
-[node name="Wall1" type="CSGBox3D" parent="." unique_id=1981176039]
+[node name="Wall1" type="CSGBox3D" parent="Grid" unique_id=1981176039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
-[node name="Wall2" type="CSGBox3D" parent="." unique_id=2048590587]
+[node name="Wall2" type="CSGBox3D" parent="Grid" unique_id=2048590587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
-[node name="Wall3" type="CSGBox3D" parent="." unique_id=1211173167]
+[node name="Wall3" type="CSGBox3D" parent="Grid" unique_id=1211173167]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 2, 0)
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
-[node name="Wall4" type="CSGBox3D" parent="." unique_id=400878532]
+[node name="Wall4" type="CSGBox3D" parent="Grid" unique_id=400878532]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2, 0)
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
+
+[node name="Player" parent="." unique_id=1364246139 instance=ExtResource("1_3h184")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Right" type="CSGTorus3D" parent="." unique_id=1524668965]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 material = ExtResource("4_rvmsc")
 
 [node name="Front" type="CSGCylinder3D" parent="." unique_id=1901606985]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 9)
 material = ExtResource("4_rvmsc")
 
 [node name="Right2" type="CSGSphere3D" parent="." unique_id=1683592]

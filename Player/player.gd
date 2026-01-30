@@ -39,18 +39,20 @@ func _ready() -> void:
 	is_mouse_captured = true
 	smooth_camera_fov = smooth_camera.fov
 	weapon_camera_fov = weapon_camera.fov
+	# let's move to our starting position
+	position = grid.get_new_player_position(grid.player_x, grid.player_y)
 
 func _physics_process(delta: float) -> void:
 	var target_y_angle = 90
 	
 	if Input.is_action_just_pressed("turn_left"):
 		rotation.y += deg_to_rad(90)
-		player_is_facing = wrapi(player_is_facing - 1, 0, 3)
+		player_is_facing = wrapi(player_is_facing - 1, 0, 4)
 		#rotation.y = lerp_angle(rotation.y, target_y_angle, speed * delta)
 	
 	if Input.is_action_just_pressed("turn_right"):
 		rotation.y -= deg_to_rad(90)
-		player_is_facing = wrapi(player_is_facing + 1, 0, 3)
+		player_is_facing = wrapi(player_is_facing + 1, 0, 4)
 		#rotation.y = lerp_angle(rotation.y, -target_y_angle, speed * delta)
 		
 	if Input.is_action_just_pressed("move_forward"):
@@ -62,23 +64,21 @@ func _physics_process(delta: float) -> void:
 func move_player_in_direction() -> void:
 	match player_is_facing:
 		0:
-			if grid.can_player_move_in_cell(grid.player_x + 1, grid.player_y):
-				grid.move_player_to(grid.player_x + 1, grid.player_y)
+			if grid.can_player_move_in_cell(grid.player_x, grid.player_y + 1):
+				global_position = grid.get_new_player_position(grid.player_x, grid.player_y + 1)
 				# move north. neg Z
 		1: 
-			if grid.can_player_move_in_cell(grid.player_x, grid.player_y + 1):
-				grid.move_player_to(grid.player_x, grid.player_y + 1)
+			if grid.can_player_move_in_cell(grid.player_x + 1, grid.player_y):
+				global_position = grid.get_new_player_position(grid.player_x + 1, grid.player_y)
 				# move east. pos x
 		2:
-			if grid.can_player_move_in_cell(grid.player_x - 1, grid.player_y):
-				grid.move_player_to(grid.player_x, grid.player_y + 1)
-				# move south. pos z
-		3: 
 			if grid.can_player_move_in_cell(grid.player_x, grid.player_y - 1):
-				grid.move_player_to(grid.player_x, grid.player_y - 1)
+				global_position = grid.get_new_player_position(grid.player_x, grid.player_y - 1)
+				# move south. pos z
+		3: 	
+			if grid.can_player_move_in_cell(grid.player_x - 1, grid.player_y):
+				global_position = grid.get_new_player_position(grid.player_x - 1, grid.player_y)
 				# move west. neg x	
-	
-	print(grid.player_x, grid.player_y, player_is_facing)
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_cancel"):

@@ -80,15 +80,6 @@ font_size = 64
 [node name="Player" type="CharacterBody3D" unique_id=1364246139 groups=["player"]]
 transform = Transform3D(0.9856564, 0.16876462, 0, -0.16876462, 0.9856564, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_6xdwp")
-speed = null
-jump_height = null
-mouse_sensitivity = null
-gravity = null
-fall_multiplier = null
-max_hp = null
-zoom_factor = null
-zoom_in_speed = null
-zoom_out_speed = null
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1141659312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
