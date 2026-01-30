@@ -1,6 +1,6 @@
 extends Node3D
 
-@export_category("Weapons")
+@export_category("Masks")
 @export var weapons : Array[Node3D]
 
 var active_weapon : int
@@ -9,11 +9,13 @@ func _ready() -> void:
 	equip(1)
 
 func _process(delta) -> void:
-	if Input.is_action_just_released("next_weapon"):
-		equip(wrapi(active_weapon+1, 0, weapons.size()))
+	# we're going to do mask swapping here
+	#if Input.is_action_just_released("next_weapon"):
+	#	equip(wrapi(active_weapon+1, 0, weapons.size()))
 
-	if Input.is_action_just_released("prev_weapon"):
-		equip(wrapi(active_weapon-1, 0, weapons.size()))
+	#if Input.is_action_just_released("prev_weapon"):
+	#	equip(wrapi(active_weapon-1, 0, weapons.size()))
+	pass
 
 func equip(new_weapon_index : int) -> void:
 	# if it's actually a different weapons 
@@ -28,9 +30,9 @@ func equip(new_weapon_index : int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("weapon_1"):
-		equip(0)
+#	if event.is_action_pressed("weapon_1"):
+#		equip(0)
 	
-	if event.is_action_pressed("weapon_2"):
-		equip(1)
-	
+#	if event.is_action_pressed("weapon_2"):
+#		equip(1)
+	pass	

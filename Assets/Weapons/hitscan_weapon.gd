@@ -30,9 +30,9 @@ func _process(delta: float) -> void:
 	var canFire : bool = false
 	
 	if cooldown_timer.is_stopped() and ammo_handler.has_ammo(ammo_type):
-		if Input.is_action_pressed("Fire") and is_automatic:
+		if Input.is_action_pressed("fire") and is_automatic:
 			canFire = true
-		elif Input.is_action_just_pressed(("Fire")):
+		elif Input.is_action_just_pressed(("fire")):
 			canFire = true
 		
 	if canFire:

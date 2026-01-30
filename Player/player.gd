@@ -35,24 +35,6 @@ func _ready() -> void:
 	smooth_camera_fov = smooth_camera.fov
 	weapon_camera_fov = weapon_camera.fov
 
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("aim"):
-		smooth_camera.fov = lerp(smooth_camera.fov,
-			smooth_camera_fov * zoom_factor,
-			delta * zoom_in_speed)
-		weapon_camera.fov = lerp(weapon_camera.fov,
-			weapon_camera_fov * zoom_factor,
-			delta * zoom_in_speed)
-		is_aiming = true
-	else:
-		smooth_camera.fov = lerp(smooth_camera.fov,
-			smooth_camera_fov,
-			delta * zoom_out_speed)
-		weapon_camera.fov = lerp(weapon_camera.fov,
-			weapon_camera_fov,
-			delta * zoom_out_speed)
-		is_aiming = false
-
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation()
 	
@@ -69,11 +51,6 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("exit_game"):
 		get_tree().quit()
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		# Hm = Vˆ2 / 2g => v = sqrt(2 * h * g)
-		velocity.y = sqrt(2.0 * jump_height * gravity)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

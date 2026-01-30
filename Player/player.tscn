@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ciu005bjfafw4"]
 
-[ext_resource type="Script" uid="uid://d1fy2sdgbqpt8" path="res://Characters/Player/player.gd" id="1_6xdwp"]
-[ext_resource type="Script" uid="uid://bl5k4ponu8hjl" path="res://Characters/Player/smooth_camera.gd" id="2_j341n"]
+[ext_resource type="Script" uid="uid://d1fy2sdgbqpt8" path="res://Player/player.gd" id="1_6xdwp"]
+[ext_resource type="Script" uid="uid://bl5k4ponu8hjl" path="res://Player/smooth_camera.gd" id="2_j341n"]
 [ext_resource type="PackedScene" uid="uid://dnb22pxhkyng5" path="res://Assets/Weapons/SMG.tscn" id="3_bqsbk"]
-[ext_resource type="Script" uid="uid://da5axtrvkkc8c" path="res://Characters/Player/crosshair.gd" id="3_cue0d"]
-[ext_resource type="Script" uid="uid://clo34sjgpkrmu" path="res://Characters/Player/weapon_handler.gd" id="3_klx3t"]
+[ext_resource type="Script" uid="uid://da5axtrvkkc8c" path="res://Player/crosshair.gd" id="3_cue0d"]
+[ext_resource type="Script" uid="uid://clo34sjgpkrmu" path="res://Player/weapon_handler.gd" id="3_klx3t"]
 [ext_resource type="PackedScene" uid="uid://blbhfmpquhyna" path="res://Assets/Weapons/Rifle.tscn" id="3_osktb"]
-[ext_resource type="Texture2D" uid="uid://1qvw01frciri" path="res://Characters/Player/damage.png" id="5_xf5fp"]
+[ext_resource type="Texture2D" uid="uid://1qvw01frciri" path="res://Player/damage.png" id="5_xf5fp"]
 [ext_resource type="PackedScene" uid="uid://c0fwcrowt6i1f" path="res://UI/GameOverScreen.tscn" id="6_osktb"]
-[ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Characters/Player/ammo_handler.gd" id="6_r5ew0"]
+[ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/ammo_handler.gd" id="6_r5ew0"]
 [ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="9_yhol4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j341n"]
@@ -123,16 +123,16 @@ transform = Transform3D(0.9999972, 0.0022542858, -0.0007242356, -0.0022536379, 0
 cull_mask = 2
 fov = 45.0
 
-[node name="WeaponHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" unique_id=28866580 node_paths=PackedStringArray("weapons")]
+[node name="MaskHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" unique_id=28866580 node_paths=PackedStringArray("weapons")]
 script = ExtResource("3_klx3t")
 weapons = [NodePath("SMG"), NodePath("Rifle")]
 
-[node name="Rifle" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" unique_id=1991830043 node_paths=PackedStringArray("ammo_handler") instance=ExtResource("3_osktb")]
+[node name="Rifle" parent="SubViewportContainer/SubViewport/WeaponCamera/MaskHandler" unique_id=1991830043 node_paths=PackedStringArray("ammo_handler") instance=ExtResource("3_osktb")]
 transform = Transform3D(1, -6.747314e-11, 1.1641532e-10, -6.7416295e-11, 1, 0, 0, 0, 1, 0, 0, 0)
 ammo_handler = NodePath("../../AmmoHandler")
 ammo_type = 1
 
-[node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" unique_id=746674704 node_paths=PackedStringArray("ammo_handler") instance=ExtResource("3_bqsbk")]
+[node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/MaskHandler" unique_id=746674704 node_paths=PackedStringArray("ammo_handler") instance=ExtResource("3_bqsbk")]
 ammo_handler = NodePath("../../AmmoHandler")
 
 [node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera" unique_id=1369706745 node_paths=PackedStringArray("ammo_label")]
