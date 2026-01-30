@@ -1,0 +1,26 @@
+[gd_resource type="VisualShader" format=3 uid="uid://chcbb2b21nyhh"]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_8g7ru"]
+constant = 4.0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_r4r6m"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_1kq47"]
+parameter_name = "Screen"
+texture_type = 1
+texture_filter = 3
+texture_source = 1
+
+[resource]
+mode = 1
+modes/blend = 3
+flags/light_only = false
+nodes/vertex/0/position = Vector2(540, 440)
+nodes/vertex/2/node = SubResource("VisualShaderNodeFloatConstant_8g7ru")
+nodes/vertex/2/position = Vector2(-220, 410)
+nodes/vertex/3/node = SubResource("VisualShaderNodeTexture_r4r6m")
+nodes/vertex/3/position = Vector2(130, 470)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTexture2DParameter_1kq47")
+nodes/vertex/4/position = Vector2(-300, 580)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 1, 4, 0, 3, 2, 3, 0, 0, 2)

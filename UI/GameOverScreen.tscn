@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://c0fwcrowt6i1f"]
+
+[ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="1_vq8y3"]
+[ext_resource type="Script" uid="uid://cdd1qkfyet8v8" path="res://UI/game_over_screen.gd" id="2_asb5q"]
+[ext_resource type="Shader" uid="uid://chcbb2b21nyhh" path="res://UI/GameOverScreen.tres" id="3_asb5q"]
+
+[sub_resource type="Theme" id="Theme_hkg5r"]
+default_font = ExtResource("1_vq8y3")
+default_font_size = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkg5r"]
+shader = ExtResource("3_asb5q")
+
+[sub_resource type="Gradient" id="Gradient_hkg5r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wd1oi"]
+gradient = SubResource("Gradient_hkg5r")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wd1oi"]
+font_size = 80
+
+[node name="GameOverScreen" type="Control" unique_id=1950022593]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hkg5r")
+script = ExtResource("2_asb5q")
+
+[node name="BackgroundBlur" type="TextureRect" parent="." unique_id=426312847]
+material = SubResource("ShaderMaterial_hkg5r")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wd1oi")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=503878244]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=995109724]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=14918747]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_wd1oi")
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=741157780]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=517296975]
+layout_mode = 2
+text = "I'm Done"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bxnjqwecjuidm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce6cw"]
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Curve" id="Curve_lx2i5"]
+_data = [Vector2(0.036931828, 0.3616352), 0.0, 1.4, 0, 0, Vector2(0.9573864, 0.2264151), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_83f8n"]
+curve = SubResource("Curve_lx2i5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7u08b"]
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 16.0
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_83f8n")
+
+[sub_resource type="BoxMesh" id="BoxMesh_73agt"]
+
+[sub_resource type="Animation" id="Animation_ce6cw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lx2i5"]
+resource_name = "Spark"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83f8n"]
+_data = {
+&"RESET": SubResource("Animation_ce6cw"),
+&"Spark": SubResource("Animation_lx2i5")
+}
+
+[node name="Sparks" type="GPUParticles3D" unique_id=664801989]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+top_level = true
+material_override = SubResource("StandardMaterial3D_ce6cw")
+cast_shadow = 0
+emitting = false
+amount = 14
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_7u08b")
+draw_pass_1 = SubResource("BoxMesh_73agt")
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1559523021]
+libraries/ = SubResource("AnimationLibrary_83f8n")
+autoplay = &"Spark"
