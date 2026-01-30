@@ -23,29 +23,63 @@ class_name Player
 @onready var weapon_camera: Camera3D = %WeaponCamera
 @onready var grid: Grid = $"../Grid"
 
+# facing is an int between 0 and 3: 0 is north, 1 east, 2 south, 3 west
+
 var mouse_motion : Vector2 = Vector2.ZERO
 var is_mouse_captured = false
 var hp : int = max_hp
 var smooth_camera_fov : float
 var weapon_camera_fov : float
 var is_aiming : bool  = false
+var player_is_facing : int
 
 func _ready() -> void:
+	player_is_facing = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #capture mouse outside of window
 	is_mouse_captured = true
 	smooth_camera_fov = smooth_camera.fov
 	weapon_camera_fov = weapon_camera.fov
 
 func _physics_process(delta: float) -> void:
+	var target_y_angle = 90
 	
 	if Input.is_action_just_pressed("turn_left"):
-		rotate_y(deg_to_rad(90))
+		rotation.y += deg_to_rad(90)
+		player_is_facing = wrapi(player_is_facing - 1, 0, 3)
+		#rotation.y = lerp_angle(rotation.y, target_y_angle, speed * delta)
 	
 	if Input.is_action_just_pressed("turn_right"):
-		rotate_y(deg_to_rad(-90))
+		rotation.y -= deg_to_rad(90)
+		player_is_facing = wrapi(player_is_facing + 1, 0, 3)
+		#rotation.y = lerp_angle(rotation.y, -target_y_angle, speed * delta)
+		
+	if Input.is_action_just_pressed("move_forward"):
+		move_player_in_direction()
+		
+	if Input.is_action_just_pressed("move_backward"):
+		pass
+		
+func move_player_in_direction() -> void:
+	match player_is_facing:
+		0:
+			if grid.can_player_move_in_cell(grid.player_x + 1, grid.player_y):
+				grid.move_player_to(grid.player_x + 1, grid.player_y)
+				# move north. neg Z
+		1: 
+			if grid.can_player_move_in_cell(grid.player_x, grid.player_y + 1):
+				grid.move_player_to(grid.player_x, grid.player_y + 1)
+				# move east. pos x
+		2:
+			if grid.can_player_move_in_cell(grid.player_x - 1, grid.player_y):
+				grid.move_player_to(grid.player_x, grid.player_y + 1)
+				# move south. pos z
+		3: 
+			if grid.can_player_move_in_cell(grid.player_x, grid.player_y - 1):
+				grid.move_player_to(grid.player_x, grid.player_y - 1)
+				# move west. neg x	
 	
-	
-	
+	print(grid.player_x, grid.player_y, player_is_facing)
+		
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -53,13 +87,6 @@ func _input(event: InputEvent) -> void:
 		
 func take_damage(damage : int) -> void:
 	hp -= damage
-
-	if(hp <= 0):
-		die()
-	else:
-		# show that we took damage
-		animation_player.stop()
-		animation_player.play("TakeDamage")
 
 func die() -> void:
 	game_over_screen.game_over()

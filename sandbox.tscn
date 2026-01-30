@@ -9,6 +9,15 @@
 
 [node name="Player" parent="." unique_id=1364246139 instance=ExtResource("1_3h184")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+speed = 5.0
+jump_height = 1.0
+mouse_sensitivity = 0.001
+gravity = 9.81
+fall_multiplier = 2.0
+max_hp = 100
+zoom_factor = 0.6
+zoom_in_speed = 20.0
+zoom_out_speed = 40.0
 
 [node name="Grid" type="CSGBox3D" parent="." unique_id=1195405040]
 use_collision = true
@@ -40,13 +49,13 @@ size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
 [node name="Right" type="CSGTorus3D" parent="." unique_id=1524668965]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 material = ExtResource("4_rvmsc")
 
 [node name="Front" type="CSGCylinder3D" parent="." unique_id=1901606985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
 material = ExtResource("4_rvmsc")
 
-[node name="Left" type="CSGSphere3D" parent="." unique_id=1683592]
+[node name="Right2" type="CSGSphere3D" parent="." unique_id=1683592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
 material = ExtResource("4_rvmsc")
