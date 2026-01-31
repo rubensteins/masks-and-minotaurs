@@ -6,8 +6,22 @@ class_name Grid
 @export var starting_y : int = 0
 var cell_size : float
 
+var cell_array : Array[Array]
+
 func _ready() -> void:
 	cell_size = size.x * 1.0 / grid_size
+	cell_array = [
+		[10,3,3,3,3,3,3,3,3,8],
+		[4,15,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[4,0,0,0,0,0,0,0,0,2],
+		[7,1,1,1,1,1,1,1,1,5],
+	]
 
 var player_x : int :
 	get: 
@@ -21,15 +35,55 @@ var player_y : int :
 	set(value):
 		player_y = value
 
-func can_player_move_in_cell(x: int, y: int) -> bool:
-	return x >= 0 and y >= 0 and x < grid_size and y < grid_size
+func can_player_move_in_cell(x: int, y: int, facing: int) -> bool:
+	var in_bounds = x >= 0 and y >= 0 and x < grid_size and y < grid_size
+	if in_bounds:
+		var ct = cell_array[y][x]
+		match ct:
+			0:
+				return true
+			1:
+				return facing != 2
+			2: 
+				return facing != 3
+			3: 
+				return facing != 0
+			4: 
+				return facing != 1
+			5: 
+				return facing != 2 and facing != 3
+			6: 
+				return facing != 2 and facing != 0
+			7: 
+				return facing != 3 and facing != 2
+			8: 
+				return facing != 3 and facing != 0
+			9: 
+				return facing != 1 and facing != 3
+			10: 
+				return facing != 0 and facing != 1
+			11:
+				return facing == 0
+			12:
+				return facing == 1
+			13: 
+				return facing == 2
+			14: 
+				return facing == 3
+			15:
+				return false
+			_:
+				return true
+	else:
+		return false
 
-func get_new_player_position(x: int, y: int) -> Vector3:
-	if can_player_move_in_cell(x,y):
+func get_new_player_position(x: int, y: int, facing: int) -> Vector3:
+	if can_player_move_in_cell(x,y,facing):
 		player_x = x
 		player_y = y
 		return get_center_point_for_cell(x,y)
-	return Vector3.ZERO
+	else:
+		return get_center_point_for_cell(player_x, player_y)
 
 func get_center_point_for_cell(x: int, y: int) -> Vector3:
 	var min_x = -(size.x / 2.0)

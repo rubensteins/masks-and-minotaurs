@@ -44,7 +44,7 @@ func _ready() -> void:
 	smooth_camera_fov = smooth_camera.fov
 	weapon_camera_fov = weapon_camera.fov
 	# let's move to our starting position
-	position = grid.get_new_player_position(grid.player_x, grid.player_y)
+	position = grid.get_new_player_position(grid.player_x, grid.player_y,0)
 
 func _physics_process(delta: float) -> void:
 	var target_y_angle = 90
@@ -77,28 +77,30 @@ func _physics_process(delta: float) -> void:
 		
 func move_player_in_direction() -> void:
 	var target : Vector3
+	var target_x : int
+	var target_y : int
 	match player_is_facing:
 		0:
-			if grid.can_player_move_in_cell(grid.player_x, grid.player_y + 1):
-				target = grid.get_new_player_position(grid.player_x, grid.player_y + 1)
+			target_x = grid.player_x
+			target_y = grid.player_y + 1
 		1: 
-			if grid.can_player_move_in_cell(grid.player_x + 1, grid.player_y):
-				target = grid.get_new_player_position(grid.player_x + 1, grid.player_y)
-				# move east. pos x
+			target_x = grid.player_x + 1
+			target_y = grid.player_y
 		2:
-			if grid.can_player_move_in_cell(grid.player_x, grid.player_y - 1):
-				target = grid.get_new_player_position(grid.player_x, grid.player_y - 1)
-				# move south. pos z
+			target_x = grid.player_x
+			target_y = grid.player_y - 1
 		3: 	
-			if grid.can_player_move_in_cell(grid.player_x - 1, grid.player_y):
-				target = grid.get_new_player_position(grid.player_x - 1, grid.player_y)
+			target_x = grid.player_x - 1
+			target_y = grid.player_y
 	
-	var tween = create_tween()	
-	is_animating = true	
-	#Rotate camera to 90 degrees around Y over 1 second
-	tween.finished.connect(func(): is_animating = false)
-	tween.tween_property(self, "global_position", target, rotate_speed)\
-	 	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)			
+	if grid.can_player_move_in_cell(target_x, target_y, player_is_facing):
+		target = grid.get_new_player_position(target_x, target_y,player_is_facing)
+		var tween = create_tween()	
+		is_animating = true	
+		#Rotate camera to 90 degrees around Y over 1 second
+		tween.finished.connect(func(): is_animating = false)
+		tween.tween_property(self, "global_position", target, rotate_speed)\
+		 	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)			
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_cancel"):
