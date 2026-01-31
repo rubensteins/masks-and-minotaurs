@@ -6,9 +6,20 @@
 [ext_resource type="Script" uid="uid://ch5rimp81n0pb" path="res://grid.gd" id="2_p7lbm"]
 [ext_resource type="PackedScene" uid="uid://bo3yyf14hvsya" path="res://Assets/LevelTiles/cell_0.tscn" id="3_igx0j"]
 [ext_resource type="PackedScene" uid="uid://bia2ft2lblwlb" path="res://Assets/LevelTiles/cell_01.tscn" id="4_igx0j"]
-[ext_resource type="PackedScene" uid="uid://cjrq8oqcnd7og" path="res://Assets/LevelTiles/cell_11.tscn" id="5_ai2o8"]
-[ext_resource type="PackedScene" uid="uid://db8sbah2pql22" path="res://Assets/LevelTiles/cell_12.tscn" id="6_luwg1"]
-[ext_resource type="PackedScene" uid="uid://ii4eqg7pwhtg" path="res://Assets/LevelTiles/cell_13.tscn" id="7_nmhe3"]
+[ext_resource type="PackedScene" uid="uid://srpkl7wrh78b" path="res://Assets/LevelTiles/cell_10.tscn" id="4_tctsc"]
+[ext_resource type="PackedScene" uid="uid://c4wqjhmvskt8p" path="res://Assets/LevelTiles/cell_11.tscn" id="5_ai2o8"]
+[ext_resource type="PackedScene" uid="uid://cb0x81tqsf8ve" path="res://Assets/LevelTiles/cell_02.tscn" id="5_igx0j"]
+[ext_resource type="PackedScene" uid="uid://cu8dndvf3ag0u" path="res://Assets/LevelTiles/cell_12.tscn" id="6_luwg1"]
+[ext_resource type="PackedScene" uid="uid://mt74inbjm3ci" path="res://Assets/LevelTiles/cell_03.tscn" id="6_tctsc"]
+[ext_resource type="PackedScene" uid="uid://cu54cv0ttck8e" path="res://Assets/LevelTiles/cell_04.tscn" id="7_ai2o8"]
+[ext_resource type="PackedScene" uid="uid://bc6cvpiix64l0" path="res://Assets/LevelTiles/cell_13.tscn" id="7_nmhe3"]
+[ext_resource type="PackedScene" uid="uid://rdw7opwyistw" path="res://Assets/LevelTiles/cell_05.tscn" id="8_rgx3o"]
+[ext_resource type="PackedScene" uid="uid://b2gbphg2gk0xd" path="res://Assets/LevelTiles/cell_06.tscn" id="9_b8cfi"]
+[ext_resource type="PackedScene" uid="uid://dhj6ncippbwqp" path="res://Assets/LevelTiles/cell_07.tscn" id="10_tihu5"]
+[ext_resource type="PackedScene" uid="uid://bby6jct7qywfw" path="res://Assets/LevelTiles/cell_08.tscn" id="11_g1jyn"]
+[ext_resource type="PackedScene" uid="uid://d1uqamuy67fsu" path="res://Assets/LevelTiles/cell_09.tscn" id="12_q6o5f"]
+[ext_resource type="PackedScene" uid="uid://dhngyf288pqgs" path="res://Assets/LevelTiles/cell_14.tscn" id="17_pnsw4"]
+[ext_resource type="PackedScene" uid="uid://dy5weketdfjh2" path="res://Assets/LevelTiles/cell_15.tscn" id="18_c0501"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypj6x"]
 albedo_texture = ExtResource("1_rjrbw")
@@ -20,28 +31,32 @@ use_collision = true
 size = Vector3(20, 0.1, 20)
 material = SubResource("StandardMaterial3D_ypj6x")
 script = ExtResource("2_p7lbm")
-tiles = Array[PackedScene]([ExtResource("3_igx0j"), ExtResource("4_igx0j"), ExtResource("5_ai2o8"), ExtResource("6_luwg1"), ExtResource("7_nmhe3")])
+tiles = Array[PackedScene]([ExtResource("3_igx0j"), ExtResource("4_igx0j"), ExtResource("5_igx0j"), ExtResource("6_tctsc"), ExtResource("7_ai2o8"), ExtResource("8_rgx3o"), ExtResource("9_b8cfi"), ExtResource("10_tihu5"), ExtResource("11_g1jyn"), ExtResource("12_q6o5f"), ExtResource("4_tctsc"), ExtResource("5_ai2o8"), ExtResource("6_luwg1"), ExtResource("7_nmhe3"), ExtResource("17_pnsw4"), ExtResource("18_c0501")])
 
 [node name="Wall1" type="CSGBox3D" parent="Grid" unique_id=1981176039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+visible = false
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
 [node name="Wall2" type="CSGBox3D" parent="Grid" unique_id=2048590587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+visible = false
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
 [node name="Wall3" type="CSGBox3D" parent="Grid" unique_id=1211173167]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 2, 0)
+visible = false
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")
 
 [node name="Wall4" type="CSGBox3D" parent="Grid" unique_id=400878532]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 2, 0)
+visible = false
 use_collision = true
 size = Vector3(20, 4, 0.1)
 material = ExtResource("2_cojph")

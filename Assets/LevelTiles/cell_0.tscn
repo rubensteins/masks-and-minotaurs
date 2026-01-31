@@ -4,11 +4,12 @@
 [ext_resource type="Material" uid="uid://csxgfrpmlne7t" path="res://Assets/Materials/floor.tres" id="1_tu4qp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tu4qp"]
+size = Vector2(1, 1)
 
 [node name="CellMesh" type="Node3D" unique_id=1668955190]
 script = ExtResource("1_dwrer")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=369874426]
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=369874426]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 material_override = ExtResource("1_tu4qp")
 mesh = SubResource("PlaneMesh_tu4qp")

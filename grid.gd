@@ -12,29 +12,42 @@ var cell_array : Array[Array]
 func _ready() -> void:
 	cell_size = size.x * 1.0 / grid_size
 	cell_array = [
-		[10,3,3,3,3,3,3,3,3,8],
-		[4,15,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[4,0,0,0,0,0,0,0,0,2],
-		[7,1,1,1,1,1,1,1,1,5],
+		[10,6,6,6,6,6,6,6,6,8],
+		[4,6,6,6,8,10,6,6,8,9],
+		[9,14,6,8,9,4,6,12,9,9],
+		[4,6,8,9,9,9,14,3,5,9],
+		[9,13,11,9,11,9,13,11,13,9],
+		[9,4,6,1,3,5,4,6,1,2],
+		[9,7,6,8,7,8,9,14,8,9],
+		[4,6,8,7,8,9,9,13,7,2],
+		[9,15,4,6,5,9,7,1,12,9],
+		[7,6,1,6,6,1,6,6,6,5],
 	]
-	place_tile(0,0,0)
+	#place_tile(0,1,4)
+	#place_tile(0,3,4)
+	#place_tile(9,5,2)
+	
+	for y in 10:
+		for x in 10:
+			place_tile(x, y, cell_array[y][x])
 	
 func place_tile(x: int, y: int, type: int) -> void:
 	# find coordinates of cell
 	# place packedscene at location
-	if type == 0:
-		var scene = tiles[1]	.instantiate()
-		add_child(scene)
-		scene.place_at(Vector3(5,0,5))
-		#scene.global_position = 	
-		
 
+
+	if type < 0 or type > (tiles.size() - 1):
+		type = 0
+
+	var scene = tiles[type].instantiate()
+	add_child(scene)
+	if scene is CellMesh:
+		var loc = get_center_point_for_cell(x,y)
+		scene.place_at(loc)
+		printt("Place: ", x,y,type, loc)	
+	
+	
+	
 var player_x : int :
 	get: 
 		return player_x 
@@ -67,7 +80,7 @@ func can_player_move_in_cell(x: int, y: int, facing: int) -> bool:
 			6: 
 				return facing != 2 and facing != 0
 			7: 
-				return facing != 3 and facing != 2
+				return facing != 1 and facing != 2
 			8: 
 				return facing != 3 and facing != 0
 			9: 
@@ -105,4 +118,12 @@ func get_center_point_for_cell(x: int, y: int) -> Vector3:
 	var total_x = min_x + x_to_add
 	var total_y = min_y - y_to_add
 	return Vector3(total_x, 0, total_y)
-	
+
+func get_corner_point_for_cell(x: int, y: int) -> Vector3:
+	var min_x = -(size.x / 2.0)
+	var min_y = (size.z / 2.0)
+	var x_to_add = x * cell_size * cell_size
+	var y_to_add = y * cell_size * cell_size
+	var total_x = min_x + x_to_add
+	var total_y = min_y - y_to_add
+	return Vector3(total_x, 0, total_y)

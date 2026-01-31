@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dhngyf288pqgs"]
+
+[ext_resource type="PackedScene" uid="uid://bo3yyf14hvsya" path="res://Assets/LevelTiles/cell_0.tscn" id="1_ltj61"]
+[ext_resource type="Material" uid="uid://dbeiplh2hmsft" path="res://Assets/Materials/wall.tres" id="2_8p4mj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_abb7g"]
+size = Vector3(1, 3, 0.05)
+
+[node name="CellMesh" unique_id=1668955190 instance=ExtResource("1_ltj61")]
+
+[node name="Wall" type="MeshInstance3D" parent="." index="1" unique_id=853004964]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3, -1)
+material_override = ExtResource("2_8p4mj")
+mesh = SubResource("BoxMesh_abb7g")
+
+[node name="Wall2" type="MeshInstance3D" parent="." index="2" unique_id=940407874]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 3, 1)
+material_override = ExtResource("2_8p4mj")
+mesh = SubResource("BoxMesh_abb7g")
+
+[node name="Wall3" type="MeshInstance3D" parent="." index="3" unique_id=1912673537]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -1, 3, 0)
+material_override = ExtResource("2_8p4mj")
+mesh = SubResource("BoxMesh_abb7g")
