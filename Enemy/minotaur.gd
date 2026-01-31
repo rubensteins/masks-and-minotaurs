@@ -35,7 +35,6 @@ func best_move() -> void:
 	var canGoEast = grid.can_player_move_in_cell(mino_x + 1, mino_y, 1)
 	var canGoSouth = grid.can_player_move_in_cell(mino_x, mino_y - 1, 2)
 	var canGoWest = grid.can_player_move_in_cell(mino_x - 1, mino_y, 3)
-	printt(canGoNorth, canGoEast, canGoSouth, canGoWest)
 	
 	var shortest_distance = 1000
 	var best_facing = 0
@@ -71,7 +70,7 @@ func best_move() -> void:
 			target_x = mino_x
 			target_y = mino_y - 1
 	
-	if canGoEast:
+	if canGoWest:
 		var distance = Vector2(mino_x - 1, mino_y).distance_to(
 			Vector2(grid.player_x, grid.player_y))
 		if (distance < shortest_distance):
@@ -81,4 +80,3 @@ func best_move() -> void:
 			target_y = mino_y
 	
 	global_position = grid.get_new_mino_position(target_x, target_y, best_facing)
-	printt("minotaur:" , target_x, target_y)

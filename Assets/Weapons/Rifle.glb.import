@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://db2twtadx0mn8"
-path="res://.godot/imported/Rifle.glb-034c51a86fb5bac10651232530d107db.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Weapons/Rifle.glb"
-dest_files=["res://.godot/imported/Rifle.glb-034c51a86fb5bac10651232530d107db.scn"]
 
 [params]
 

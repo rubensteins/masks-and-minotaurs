@@ -16,9 +16,12 @@ class_name Grid
 @export var mino_height : float = 2.0
 
 signal player_enemy_collission
+signal player_in_trap
+signal reached_end
 
 var cell_size : float
 var cell_array : Array[Array]
+var traps_array : Array[Array]
 
 func _ready() -> void:
 	cell_size = size.x * 1.0 / grid_size
@@ -34,6 +37,18 @@ func _ready() -> void:
 		[9,15,4,6,5,9,7,1,12,9],
 		[7,6,1,6,6,1,6,6,6,5],
 	]
+	traps_array = [
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,5,0,0],
+		[0,0,0,1,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,1,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,1,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,1,0,0,0],
+	] # 1=pit, 2=secret_door, 5=prize
 
 	for y in 10:
 		for x in 10:
@@ -133,6 +148,18 @@ func get_new_mino_position(x: int, y: int, facing: int) -> Vector3:
 		return get_center_point_for_cell(x,y)
 	else:
 		return get_center_point_for_cell(mino_x, mino_y)
+
+func special_things_in_tile(x: int, y: int) -> bool:
+	if traps_array[y][x] != 0:
+		if traps_array[y][x] == 5:
+			print("You won!")
+			reached_end.emit()
+		elif traps_array[y][x] == 1:
+			print("A trap!")	
+			player_in_trap.emit()
+		return true
+	else:
+		return false
 
 func get_center_point_for_cell(x: int, y: int) -> Vector3:
 	var min_x = -(size.x / 2.0)

@@ -47,10 +47,8 @@ func player_has_action_left() -> bool:
 func player_take_move() -> void:
 
 	if !movesLeft["player_move"] and movesLeft["player_action"]:
-		print("Player moves as action")
 		movesLeft["player_action"] = false
 	else:
-		print("Player moves")
 		movesLeft["player_move"] = false
 	next()
 	
@@ -60,10 +58,8 @@ func player_take_action() -> void:
 	
 func mino_move() -> void:
 	if !movesLeft["mino_move"] and movesLeft["mino_action"]:
-		print("Mino moves as action")
 		movesLeft["mino_action"] = false
 	else:
-		print("Mino moves")
 		movesLeft["mino_move"] = false
 	next()
 

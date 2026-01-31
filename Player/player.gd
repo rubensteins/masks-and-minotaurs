@@ -48,6 +48,8 @@ func _ready() -> void:
 	TurnHandler.player_turn.connect(func(): in_player_turn = true)
 	TurnHandler.mino_turn.connect(func(): in_player_turn = false)
 	grid.player_enemy_collission.connect(die)
+	grid.player_in_trap.connect(die)
+	grid.reached_end.connect(won)
 
 func update_turn_label() -> void:
 	var turn_tracker = TurnHandler.turn_tracker
@@ -88,6 +90,7 @@ func _process(_delta: float) -> void:
 		if TurnHandler.player_can_move():
 			TurnHandler.player_take_move()
 			move_player_in_direction()
+			grid.special_things_in_tile(grid.player_x, grid.player_y)
 			update_turn_label()
 		
 	if Input.is_action_just_pressed("move_backward"):
@@ -128,6 +131,9 @@ func _input(event: InputEvent) -> void:
 		
 func take_damage(damage : int) -> void:
 	hp -= damage
-	
+
+func won() -> void:
+	game_over_screen.game_over(true)
+
 func die() -> void:
-	game_over_screen.game_over()
+	game_over_screen.game_over(false)
