@@ -9,6 +9,9 @@ class_name Player
 @export var fall_multiplier : float = 2.0
 @export var max_hp : int = 100
 
+@export_category("Game Feel")
+@export var rotate_speed : float = 0.8
+
 @export_category("Aim Options")
 @export var zoom_factor : float = 0.6
 @export var zoom_in_speed : float = 20.0
@@ -32,6 +35,7 @@ var smooth_camera_fov : float
 var weapon_camera_fov : float
 var is_aiming : bool  = false
 var player_is_facing : int
+var is_animating : bool
 
 func _ready() -> void:
 	player_is_facing = 0
@@ -45,15 +49,25 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var target_y_angle = 90
 	
-	if Input.is_action_just_pressed("turn_left"):
-		rotation.y += deg_to_rad(90)
+	if Input.is_action_just_pressed("turn_left") and not is_animating:
+		var tween = create_tween()
+		var target = rotation_degrees.y + 90
+		is_animating = true
+		# Rotate camera to 90 degrees around Y over 1 second
+		tween.finished.connect(func(): is_animating = false)
+		tween.tween_property(self, "rotation_degrees:y", target, rotate_speed)\
+			 .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		player_is_facing = wrapi(player_is_facing - 1, 0, 4)
-		#rotation.y = lerp_angle(rotation.y, target_y_angle, speed * delta)
 	
-	if Input.is_action_just_pressed("turn_right"):
-		rotation.y -= deg_to_rad(90)
+	if Input.is_action_just_pressed("turn_right") and not is_animating:
+		var tween = create_tween()
+		var target = rotation_degrees.y - 90
+		is_animating = true
+		# Rotate camera to 90 degrees around Y over 1 second
+		tween.finished.connect(func(): is_animating = false)
+		tween.tween_property(self, "rotation_degrees:y", target, rotate_speed)\
+			 .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		player_is_facing = wrapi(player_is_facing + 1, 0, 4)
-		#rotation.y = lerp_angle(rotation.y, -target_y_angle, speed * delta)
 		
 	if Input.is_action_just_pressed("move_forward"):
 		move_player_in_direction()
