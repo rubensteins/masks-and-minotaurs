@@ -24,7 +24,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var canFire : bool = false
+
 	
 	#if cooldown_timer.is_stopped() and ammo_handler.has_ammo(ammo_type):
 		#if Input.is_action_pressed("fire") and is_automatic:

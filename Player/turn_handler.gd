@@ -1,7 +1,7 @@
 extends Node
-class_name TurnHandler
 
-@export var turn_label: Label
+signal player_turn
+signal mino_turn
 
 var turn_tracker : int :
 	get:
@@ -23,30 +23,14 @@ func next() -> void:
 		movesLeft["mino_move"] = true
 		movesLeft["mino_action"] = true
 		turn_tracker = 0
+		player_turn.emit()
 	else:
 		turn_tracker = turn_tracker + 1
 
 	if turn_tracker == 2:
-	# mino is up
-		take_mino_turn()
+		# mino is up
+		mino_turn.emit()
 	
-	#printt(movesLeft["player_move"],movesLeft["player_action"],movesLeft["mino_move"],movesLeft["mino_action"])
-	
-	update_turn_tracker()
-
-func update_turn_tracker() -> void:
-	var tt_text = ""
-	if turn_tracker < 2:
-		tt_text += "Player"
-		if movesLeft["player_move"]:
-			tt_text += " move "
-		if movesLeft["player_action"]:
-			tt_text += " action "
-	else:
-		tt_text += "Minotaur is moving..." 
-	
-	turn_label.text = tt_text
-
 func player_can_move() -> bool: 
 	return turn_tracker < 2
 
@@ -82,8 +66,3 @@ func mino_action() -> void:
 func mino_legedary() -> void:
 	pass
 	
-func take_mino_turn() -> void:
-	await get_tree().create_timer(1.0).timeout
-	mino_move()
-	await get_tree().create_timer(1.0).timeout
-	mino_move()

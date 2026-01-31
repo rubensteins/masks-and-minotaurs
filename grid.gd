@@ -1,11 +1,21 @@
 extends CSGBox3D
 class_name Grid
 
+@export_category("Grid Setup")
 @export var grid_size : int = 10 # always square
+@export var tiles : Array[PackedScene]
+
+@export_category("Player")
 @export var starting_x : int = 0
 @export var starting_y : int = 0
-@export var tiles : Array[PackedScene]
 @export var player_height : float = 2.0
+
+@export_category("Minotaur")
+@export var mino_starting_x : int = 9
+@export var mino_starting_y : int = 9
+@export var mino_height : float = 2.0
+
+signal player_enemy_collission
 
 var cell_size : float
 var cell_array : Array[Array]
@@ -53,6 +63,18 @@ var player_y : int :
 		return player_y 
 	set(value):
 		player_y = value
+
+var mino_x : int :
+	get: 
+		return mino_x 
+	set(value):
+		mino_x = value
+		
+var mino_y : int :
+	get: 
+		return mino_y 
+	set(value):
+		mino_y = value
 
 func can_player_move_in_cell(x: int, y: int, facing: int) -> bool:
 	var in_bounds = x >= 0 and y >= 0 and x < grid_size and y < grid_size
@@ -103,6 +125,14 @@ func get_new_player_position(x: int, y: int, facing: int) -> Vector3:
 		return get_center_point_for_cell(x,y)
 	else:
 		return get_center_point_for_cell(player_x, player_y)
+		
+func get_new_mino_position(x: int, y: int, facing: int) -> Vector3:
+	if can_player_move_in_cell(x,y,facing):
+		mino_x = x
+		mino_y = y
+		return get_center_point_for_cell(x,y)
+	else:
+		return get_center_point_for_cell(mino_x, mino_y)
 
 func get_center_point_for_cell(x: int, y: int) -> Vector3:
 	var min_x = -(size.x / 2.0)
@@ -121,3 +151,7 @@ func get_corner_point_for_cell(x: int, y: int) -> Vector3:
 	var total_x = min_x + x_to_add
 	var total_y = min_y - y_to_add
 	return Vector3(total_x, player_height, total_y)
+
+func mino_and_player_collide():
+	if mino_x == player_x and mino_y == player_y:
+		player_enemy_collission.emit()

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b1cdsd7g16mpn"]
+
+[ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="1_ns4kc"]
+[ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/turn_handler.gd" id="1_sndvk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_va6lm"]
+font = ExtResource("1_ns4kc")
+font_size = 64
+
+[node name="MarginContainer" type="MarginContainer" unique_id=13974847 node_paths=PackedStringArray("turn_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_sndvk")
+turn_label = NodePath("TurnLabel")
+
+[node name="TurnLabel" type="Label" parent="." unique_id=949651348]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Player Turn"
+label_settings = SubResource("LabelSettings_va6lm")
