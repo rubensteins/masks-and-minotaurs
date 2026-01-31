@@ -69,30 +69,36 @@ func _physics_process(delta: float) -> void:
 			 .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		player_is_facing = wrapi(player_is_facing + 1, 0, 4)
 		
-	if Input.is_action_just_pressed("move_forward"):
+	if Input.is_action_just_pressed("move_forward") and not is_animating:
 		move_player_in_direction()
 		
 	if Input.is_action_just_pressed("move_backward"):
 		pass
 		
 func move_player_in_direction() -> void:
+	var target : Vector3
 	match player_is_facing:
 		0:
 			if grid.can_player_move_in_cell(grid.player_x, grid.player_y + 1):
-				global_position = grid.get_new_player_position(grid.player_x, grid.player_y + 1)
-				# move north. neg Z
+				target = grid.get_new_player_position(grid.player_x, grid.player_y + 1)
 		1: 
 			if grid.can_player_move_in_cell(grid.player_x + 1, grid.player_y):
-				global_position = grid.get_new_player_position(grid.player_x + 1, grid.player_y)
+				target = grid.get_new_player_position(grid.player_x + 1, grid.player_y)
 				# move east. pos x
 		2:
 			if grid.can_player_move_in_cell(grid.player_x, grid.player_y - 1):
-				global_position = grid.get_new_player_position(grid.player_x, grid.player_y - 1)
+				target = grid.get_new_player_position(grid.player_x, grid.player_y - 1)
 				# move south. pos z
 		3: 	
 			if grid.can_player_move_in_cell(grid.player_x - 1, grid.player_y):
-				global_position = grid.get_new_player_position(grid.player_x - 1, grid.player_y)
-				# move west. neg x	
+				target = grid.get_new_player_position(grid.player_x - 1, grid.player_y)
+	
+	var tween = create_tween()	
+	is_animating = true	
+	#Rotate camera to 90 degrees around Y over 1 second
+	tween.finished.connect(func(): is_animating = false)
+	tween.tween_property(self, "global_position", target, rotate_speed)\
+	 	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)			
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_cancel"):
