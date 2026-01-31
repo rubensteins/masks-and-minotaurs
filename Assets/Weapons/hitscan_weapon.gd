@@ -1,8 +1,5 @@
 extends Node3D
 
-@export_category("Managers")
-@export var ammo_handler : AmmoHandler
-
 @export_category("Weapon Properties")
 @export var fire_rate := 14.0 # per second
 @export var recoil_amount := 0.05 # in meters
@@ -10,7 +7,7 @@ extends Node3D
 @export var weapon_range := 100.0
 @export var weapon_base_dmg := 20.0
 @export var is_automatic : bool = true
-@export var ammo_type: AmmoHandler.ammo_type
+#@export var ammo_type: AmmoHandler.ammo_type
 
 @export_category("Weapon Visuals")
 @export var muzzle_flash: GPUParticles3D
@@ -29,31 +26,31 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var canFire : bool = false
 	
-	if cooldown_timer.is_stopped() and ammo_handler.has_ammo(ammo_type):
-		if Input.is_action_pressed("fire") and is_automatic:
-			canFire = true
-		elif Input.is_action_just_pressed(("fire")):
-			canFire = true
-		
-	if canFire:
-		fire()	
+	#if cooldown_timer.is_stopped() and ammo_handler.has_ammo(ammo_type):
+		#if Input.is_action_pressed("fire") and is_automatic:
+			#canFire = true
+		#elif Input.is_action_just_pressed(("fire")):
+			#canFire = true
+		#
+	#if canFire:
+		#fire()	
 	# if we're recoiled, start moving back
 	weapon_mesh.position = weapon_mesh.position.lerp(original_weapon_position, delta * recoil_speed_back)
 		
 func fire() -> void:
-	ammo_handler.use_ammo(ammo_type)
-	
-	if muzzle_flash != null:
-		muzzle_flash.restart()
-	
-	var target = ray_cast.get_collider()
-	#if target is Enemy:
-	#	target.take_damage(weapon_base_dmg)
-	
-	cooldown_timer.start(1.0/fire_rate)
-	
-	#initiate recoil
-	weapon_mesh.position.z += recoil_amount
+	#ammo_handler.use_ammo(ammo_type)
+	#
+	#if muzzle_flash != null:
+		#muzzle_flash.restart()
+	#
+	#var target = ray_cast.get_collider()
+	##if target is Enemy:
+	##	target.take_damage(weapon_base_dmg)
+	#
+	#cooldown_timer.start(1.0/fire_rate)
+	#
+	##initiate recoil
+	#weapon_mesh.position.z += recoil_amount
 	
 	#sparks where we hit
 	var spark = sparks.instantiate()

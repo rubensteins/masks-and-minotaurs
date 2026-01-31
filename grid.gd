@@ -5,6 +5,7 @@ class_name Grid
 @export var starting_x : int = 0
 @export var starting_y : int = 0
 @export var tiles : Array[PackedScene]
+@export var player_height : float = 2.0
 
 var cell_size : float
 var cell_array : Array[Array]
@@ -23,10 +24,7 @@ func _ready() -> void:
 		[9,15,4,6,5,9,7,1,12,9],
 		[7,6,1,6,6,1,6,6,6,5],
 	]
-	#place_tile(0,1,4)
-	#place_tile(0,3,4)
-	#place_tile(9,5,2)
-	
+
 	for y in 10:
 		for x in 10:
 			place_tile(x, y, cell_array[y][x])
@@ -34,8 +32,6 @@ func _ready() -> void:
 func place_tile(x: int, y: int, type: int) -> void:
 	# find coordinates of cell
 	# place packedscene at location
-
-
 	if type < 0 or type > (tiles.size() - 1):
 		type = 0
 
@@ -44,9 +40,7 @@ func place_tile(x: int, y: int, type: int) -> void:
 	if scene is CellMesh:
 		var loc = get_center_point_for_cell(x,y)
 		scene.place_at(loc)
-		printt("Place: ", x,y,type, loc)	
-	
-	
+		# printt("Place: ", x,y,type, loc)	
 	
 var player_x : int :
 	get: 
@@ -117,7 +111,7 @@ func get_center_point_for_cell(x: int, y: int) -> Vector3:
 	var y_to_add = y * cell_size + 0.5 * cell_size
 	var total_x = min_x + x_to_add
 	var total_y = min_y - y_to_add
-	return Vector3(total_x, 0, total_y)
+	return Vector3(total_x, player_height, total_y)
 
 func get_corner_point_for_cell(x: int, y: int) -> Vector3:
 	var min_x = -(size.x / 2.0)
@@ -126,4 +120,4 @@ func get_corner_point_for_cell(x: int, y: int) -> Vector3:
 	var y_to_add = y * cell_size * cell_size
 	var total_x = min_x + x_to_add
 	var total_y = min_y - y_to_add
-	return Vector3(total_x, 0, total_y)
+	return Vector3(total_x, player_height, total_y)

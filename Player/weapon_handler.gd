@@ -26,7 +26,7 @@ func equip(new_weapon_index : int) -> void:
 		weapons[new_weapon_index].visible = true
 		weapons[new_weapon_index].set_process(true)
 		active_weapon = new_weapon_index
-		weapons[active_weapon].ammo_handler.update_ammo_label(weapons[active_weapon].ammo_type)
+#		weapons[active_weapon].ammo_handler.update_ammo_label(weapons[active_weapon].ammo_type)
 
 func _unhandled_input(event: InputEvent) -> void:
 	

@@ -3,24 +3,16 @@ class_name Player
 
 @export_category("Gameplay Options")
 @export var speed : float = 5.0
-@export var jump_height : float = 1.0
 @export var mouse_sensitivity : float = 0.001
-@export var gravity : float = 9.81
-@export var fall_multiplier : float = 2.0
 @export var max_hp : int = 100
+@export var turn_handler : TurnHandler
 
 @export_category("Game Feel")
 @export var rotate_speed : float = 0.8
 
-@export_category("Aim Options")
-@export var zoom_factor : float = 0.6
-@export var zoom_in_speed : float = 20.0
-@export var zoom_out_speed : float = 40.0
-
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var animation_player: AnimationPlayer = $DamageTexture/AnimationPlayer
-@onready var ammo_handler: AmmoHandler = %AmmoHandler
 
 @onready var smooth_camera: Camera3D = %SmoothCamera
 @onready var weapon_camera: Camera3D = %WeaponCamera
@@ -45,6 +37,7 @@ func _ready() -> void:
 	weapon_camera_fov = weapon_camera.fov
 	# let's move to our starting position
 	position = grid.get_new_player_position(grid.player_x, grid.player_y,0)
+	turn_handler.turn_tracker = 0
 
 func _physics_process(delta: float) -> void:
 	var target_y_angle = 90
@@ -70,7 +63,9 @@ func _physics_process(delta: float) -> void:
 		player_is_facing = wrapi(player_is_facing + 1, 0, 4)
 		
 	if Input.is_action_just_pressed("move_forward") and not is_animating:
-		move_player_in_direction()
+		if turn_handler.player_can_move():
+			turn_handler.player_take_move()
+			move_player_in_direction()
 		
 	if Input.is_action_just_pressed("move_backward"):
 		pass
@@ -112,6 +107,3 @@ func take_damage(damage : int) -> void:
 
 func die() -> void:
 	game_over_screen.game_over()
-
-func pickup_ammo(type: AmmoHandler.ammo_type, amount: int) -> void:
-	ammo_handler.add_ammo(type, amount)
