@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://d1fy2sdgbqpt8" path="res://Player/player.gd" id="1_6xdwp"]
 [ext_resource type="Script" uid="uid://bl5k4ponu8hjl" path="res://Player/smooth_camera.gd" id="2_j341n"]
 [ext_resource type="Script" uid="uid://clo34sjgpkrmu" path="res://Player/weapon_handler.gd" id="3_klx3t"]
+[ext_resource type="PackedScene" uid="uid://du2pde4ri7et0" path="res://Assets/Masks/hunters_mark.tscn" id="5_00tjw"]
+[ext_resource type="PackedScene" uid="uid://cle2xhnw2vnpu" path="res://Assets/Masks/seer_mark.tscn" id="5_x3vf3"]
 [ext_resource type="Texture2D" uid="uid://1qvw01frciri" path="res://Player/damage.png" id="5_xf5fp"]
+[ext_resource type="PackedScene" uid="uid://h8kgxnf4i6ub" path="res://Assets/Masks/ghost_mark.tscn" id="6_apopc"]
 [ext_resource type="PackedScene" uid="uid://c0fwcrowt6i1f" path="res://UI/GameOverScreen.tscn" id="6_osktb"]
 [ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/turn_handler.gd" id="6_r5ew0"]
-[ext_resource type="PackedScene" uid="uid://dcgchp60xg0yx" path="res://Assets/Masks/ghost_mask.tscn" id="7_x3vf3"]
 [ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="9_yhol4"]
 
 [sub_resource type="Animation" id="Animation_od3ui"]
@@ -14,7 +16,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaskCamera/MaskHandler/GhostMask:position")
+tracks/0/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskCamera/MaskHandler/GhostMask:rotation")
+tracks/1/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +40,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskCamera/MaskHandler/GhostMask:scale")
+tracks/2/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -50,7 +52,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%MaskHandler/GhostMask:visible")
+tracks/3/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -59,46 +61,200 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%MaskHandler/HuntersMask2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0005646192, -0.51604843, -0.826668)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%MaskHandler/HuntersMask2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5973216, 0.18558785, -0.5465461)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%MaskHandler/HuntersMask2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8, 0.8, 0.8)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%MaskHandler/HuntersMask2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="Animation" id="Animation_00tjw"]
-resource_name = "put_on_ghost_mask"
+[sub_resource type="Animation" id="Animation_5htga"]
+resource_name = "mask_2"
 length = 2.0
 step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaskCamera/MaskHandler/GhostMask:position")
+tracks/0/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 1.0032883, 1.5),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.0005646192, -0.51604843, -0.8266681), Vector3(0.00039574798, -0.25847694, -0.25811175), Vector3(0.00039574798, -0.25847694, -0.25811175)]
+"values": [Vector3(0.0005646192, -0.51604843, -0.826668), Vector3(0.00039574798, -0.25847694, -0.25811175)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskCamera/MaskHandler/GhostMask:rotation")
+tracks/1/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 1, 1.5),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.5973216, 0.18558785, -0.5465461), Vector3(0, -3.7037183e-30, -6.7416295e-11), Vector3(0, -3.7037183e-30, -6.7416295e-11)]
+"values": [Vector3(-0.5973216, 0.18558785, -0.5465461), Vector3(0, -3.7037183e-30, -6.7416295e-11)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskCamera/MaskHandler/GhostMask:scale")
+tracks/2/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.033333335, 1, 1.5),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1), Vector3(1, 1, 1)]
+"values": [Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskCamera/MaskHandler/HuntersMask2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_x3vf3"]
+resource_name = "mask_3"
+length = 2.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MaskHandler/SeerMask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0005646192, -0.51604843, -0.826668), Vector3(0.00039574798, -0.25847694, -0.25811175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%MaskHandler/SeerMask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5973216, 0.18558785, -0.5465461), Vector3(0, -3.7037183e-30, -6.7416295e-11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MaskHandler/SeerMask:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MaskHandler/SeerMask:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_apopc"]
+resource_name = "mask_4"
+length = 2.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MaskHandler/GhostMask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0005646192, -0.51604843, -0.826668), Vector3(0.00039574798, -0.25847694, -0.25811175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%MaskHandler/GhostMask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5973216, 0.18558785, -0.5465461), Vector3(0, -3.7037183e-30, -6.7416295e-11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MaskHandler/GhostMask:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -107,8 +263,8 @@ tracks/3/path = NodePath("%MaskHandler/GhostMask:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.027908156),
-"transitions": PackedFloat32Array(-2, -2),
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
@@ -116,7 +272,9 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x3vf3"]
 _data = {
 &"RESET": SubResource("Animation_od3ui"),
-&"put_on_ghost_mask": SubResource("Animation_00tjw")
+&"mask_2": SubResource("Animation_5htga"),
+&"mask_3": SubResource("Animation_x3vf3"),
+&"mask_4": SubResource("Animation_apopc")
 }
 
 [sub_resource type="Animation" id="Animation_xf5fp"]
@@ -229,9 +387,17 @@ far = 18.79
 [node name="MaskHandler" type="Node3D" parent="SubViewportContainer/SubViewport/MaskCamera" unique_id=28866580 node_paths=PackedStringArray("masks")]
 unique_name_in_owner = true
 script = ExtResource("3_klx3t")
-masks = [NodePath("GhostMask")]
+masks = [NodePath("HuntersMask2"), NodePath("SeerMask"), NodePath("GhostMask")]
 
-[node name="GhostMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=147031964 instance=ExtResource("7_x3vf3")]
+[node name="HuntersMask2" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=366969777 instance=ExtResource("5_00tjw")]
+transform = Transform3D(0.71487516, 0.33772087, 0.122058414, -0.34379527, 0.56511533, 0.44994393, 0.10372295, -0.45452103, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
+visible = false
+
+[node name="SeerMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=147031964 instance=ExtResource("5_x3vf3")]
+transform = Transform3D(0.71487516, 0.33772087, 0.122058414, -0.34379527, 0.56511533, 0.44994393, 0.10372295, -0.45452103, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
+visible = false
+
+[node name="GhostMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=733575353 instance=ExtResource("6_apopc")]
 transform = Transform3D(1, 6.7416295e-11, -3.7037183e-30, -6.7416295e-11, 1, 0, 3.7037183e-30, 2.4969e-40, 1, 0.00039574798, -0.25847694, -0.25811175)
 visible = false
 

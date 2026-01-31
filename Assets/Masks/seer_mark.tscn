@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cle2xhnw2vnpu"]
+
+[ext_resource type="PackedScene" uid="uid://di70wd7cb4d4f" path="res://Assets/Masks/base_mask.tscn" id="1_weh3i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a58m4"]
+transparency = 1
+albedo_color = Color(0.5259391, 0.7057194, 0.8049349, 0.45490196)
+emission_enabled = true
+emission = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g83nm"]
+
+[node name="SeerMask" unique_id=147031964 instance=ExtResource("1_weh3i")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=181655479]
+transform = Transform3D(0.80573446, 0, 0, 0, 1.2289134, 0, 0, 0, 0.14851202, 0.021390468, 0.11916828, -0.1487714)
+material_override = SubResource("StandardMaterial3D_a58m4")
+mesh = SubResource("BoxMesh_g83nm")
