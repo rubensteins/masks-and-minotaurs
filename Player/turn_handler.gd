@@ -2,6 +2,9 @@ extends Node
 
 signal player_turn
 signal mino_turn
+signal legendary_mino
+
+var legendary_count : int = 0
 
 var turn_tracker : int :
 	get:
@@ -30,6 +33,10 @@ func next() -> void:
 	if turn_tracker == 2:
 		# mino is up
 		mino_turn.emit()
+		legendary_count += 1
+
+	if legendary_count == 5:
+		legendary_mino.emit()
 	
 func player_can_move() -> bool: 
 	return turn_tracker < 2

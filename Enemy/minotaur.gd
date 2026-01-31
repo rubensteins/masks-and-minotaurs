@@ -2,22 +2,30 @@ extends MeshInstance3D
 
 @onready var grid: Grid = $"../Grid"
 
+var do_legendary : bool = false
+
 func _ready() -> void:
 	TurnHandler.mino_turn.connect(take_turn)
-	position = grid.get_new_mino_position(0, 9, 0)
+	position = grid.get_new_mino_position(9, 9, 0)
+	TurnHandler.legendary_mino.connect(func() : do_legendary = true)
 
 func take_turn() -> void:
-	await get_tree().create_timer(1.0).timeout		
-	best_move()
-	TurnHandler.mino_move()
-	grid.mino_and_player_collide()
+	# normally, we do 2 moves, if we're legendary, we do 5!!!
+	var moves = 2
+	var wait_time = 0.7
+	if do_legendary:
+		moves = 5
+		wait_time = 0.2
+		do_legendary = false
+		TurnHandler.legendary_count = 0
 	
-	await get_tree().create_timer(1.0).timeout		
-	best_move()
-	TurnHandler.mino_move()
-	grid.mino_and_player_collide()
+	for i in range(moves):	
+		await get_tree().create_timer(wait_time).timeout		
+		best_move()
+		TurnHandler.mino_move()
+		grid.mino_and_player_collide()
 	
-	await get_tree().create_timer(1.0).timeout	
+	await get_tree().create_timer(wait_time).timeout	
 
 func best_move() -> void:
 	var mino_x = grid.mino_x
