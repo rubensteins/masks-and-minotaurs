@@ -4,8 +4,9 @@ class_name Grid
 @export var grid_size : int = 10 # always square
 @export var starting_x : int = 0
 @export var starting_y : int = 0
-var cell_size : float
+@export var tiles : Array[PackedScene]
 
+var cell_size : float
 var cell_array : Array[Array]
 
 func _ready() -> void:
@@ -22,6 +23,17 @@ func _ready() -> void:
 		[4,0,0,0,0,0,0,0,0,2],
 		[7,1,1,1,1,1,1,1,1,5],
 	]
+	place_tile(0,0,0)
+	
+func place_tile(x: int, y: int, type: int) -> void:
+	# find coordinates of cell
+	# place packedscene at location
+	if type == 0:
+		var scene = tiles[1]	.instantiate()
+		add_child(scene)
+		scene.place_at(Vector3(5,0,5))
+		#scene.global_position = 	
+		
 
 var player_x : int :
 	get: 

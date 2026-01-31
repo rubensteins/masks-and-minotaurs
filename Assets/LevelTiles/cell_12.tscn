@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://db8sbah2pql22"]
+
+[ext_resource type="Material" uid="uid://dbeiplh2hmsft" path="res://Assets/Materials/wall.tres" id="1_w2nxv"]
+[ext_resource type="Material" uid="uid://csxgfrpmlne7t" path="res://Assets/Materials/floor.tres" id="2_8hymm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4gvg8"]
+size = Vector3(2, 4, 0.05)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tu4qp"]
+
+[node name="Cell3" type="Node3D" unique_id=1668955190]
+
+[node name="Wall" type="MeshInstance3D" parent="." unique_id=21904783]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 4, 2)
+material_override = ExtResource("1_w2nxv")
+mesh = SubResource("BoxMesh_4gvg8")
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=369874426]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_override = ExtResource("2_8hymm")
+mesh = SubResource("PlaneMesh_tu4qp")

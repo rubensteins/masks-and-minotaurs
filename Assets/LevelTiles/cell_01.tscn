@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bia2ft2lblwlb"]
+
+[ext_resource type="PackedScene" uid="uid://bo3yyf14hvsya" path="res://Assets/LevelTiles/cell_0.tscn" id="1_oi4vg"]
+[ext_resource type="Material" uid="uid://dbeiplh2hmsft" path="res://Assets/Materials/wall.tres" id="2_hv1iq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y1xru"]
+size = Vector3(2, 4, 0.05)
+
+[node name="CellMesh" unique_id=1668955190 instance=ExtResource("1_oi4vg")]
+
+[node name="Wall" type="MeshInstance3D" parent="." index="1" unique_id=1559725530]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, -2)
+material_override = ExtResource("2_hv1iq")
+mesh = SubResource("BoxMesh_y1xru")

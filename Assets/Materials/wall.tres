@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dbeiplh2hmsft"]
+
+[ext_resource type="Texture2D" uid="uid://bwa0uvoll3rdl" path="res://Assets/Materials/castle_wall_slates_rough_4k.jpg" id="1_bl8qw"]
+
+[resource]
+albedo_texture = ExtResource("1_bl8qw")
+uv1_scale = Vector3(4, 4, 4)
