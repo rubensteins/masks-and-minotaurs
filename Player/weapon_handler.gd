@@ -1,38 +1,31 @@
 extends Node3D
 
 @export_category("Masks")
-@export var weapons : Array[Node3D]
+@export var masks : Array[Node3D]
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var active_weapon : int
-
-func _ready() -> void:
-	equip(1)
+var active_mask : int
+var is_mask_on : bool = false
 
 func _process(_delta) -> void:
 	# we're going to do mask swapping here
-	#if Input.is_action_just_released("next_weapon"):
-	#	equip(wrapi(active_weapon+1, 0, weapons.size()))
+	if Input.is_action_just_pressed("mask_1") and not animation_player.is_playing():
+		if not is_mask_on:
+			equip(0)
+		else: 
+			unequip(0)
 
-	#if Input.is_action_just_released("prev_weapon"):
-	#	equip(wrapi(active_weapon-1, 0, weapons.size()))
-	pass
+func equip(new_mask_index : int) -> void:
+	masks[new_mask_index].visible = true
+	masks[new_mask_index].set_process(true)
+	active_mask = new_mask_index
+	animation_player.play("put_on_ghost_mask")
+	is_mask_on = true
 
-func equip(new_weapon_index : int) -> void:
-	# if it's actually a different weapons 
-	# and we have the new weapons, do the switch
-	if active_weapon != new_weapon_index and weapons[new_weapon_index] != null:
-		weapons[active_weapon].visible = false
-		weapons[active_weapon].set_process(false)
-		weapons[new_weapon_index].visible = true
-		weapons[new_weapon_index].set_process(true)
-		active_weapon = new_weapon_index
-#		weapons[active_weapon].ammo_handler.update_ammo_label(weapons[active_weapon].ammo_type)
+func unequip(mask_index) -> void:
+	is_mask_on = false
+	animation_player.play_backwards("put_on_ghost_mask")
 
-func _unhandled_input(_event: InputEvent) -> void:
-	
-#	if event.is_action_pressed("weapon_1"):
-#		equip(0)
-	
-#	if event.is_action_pressed("weapon_2"):
-#		equip(1)
-	pass	
+func hide_the_mask() -> void:
+	masks[active_mask].visible = false
+	masks[active_mask].set_process(false)

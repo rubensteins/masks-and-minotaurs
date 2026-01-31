@@ -2,13 +2,122 @@
 
 [ext_resource type="Script" uid="uid://d1fy2sdgbqpt8" path="res://Player/player.gd" id="1_6xdwp"]
 [ext_resource type="Script" uid="uid://bl5k4ponu8hjl" path="res://Player/smooth_camera.gd" id="2_j341n"]
-[ext_resource type="PackedScene" uid="uid://dnb22pxhkyng5" path="res://Assets/Weapons/SMG.tscn" id="3_bqsbk"]
 [ext_resource type="Script" uid="uid://clo34sjgpkrmu" path="res://Player/weapon_handler.gd" id="3_klx3t"]
-[ext_resource type="PackedScene" uid="uid://blbhfmpquhyna" path="res://Assets/Weapons/Rifle.tscn" id="3_osktb"]
 [ext_resource type="Texture2D" uid="uid://1qvw01frciri" path="res://Player/damage.png" id="5_xf5fp"]
 [ext_resource type="PackedScene" uid="uid://c0fwcrowt6i1f" path="res://UI/GameOverScreen.tscn" id="6_osktb"]
 [ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/turn_handler.gd" id="6_r5ew0"]
+[ext_resource type="PackedScene" uid="uid://dcgchp60xg0yx" path="res://Assets/Masks/ghost_mask.tscn" id="7_x3vf3"]
 [ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="9_yhol4"]
+
+[sub_resource type="Animation" id="Animation_od3ui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MaskCamera/MaskHandler/GhostMask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00039574798, -0.25847694, -0.25811175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskCamera/MaskHandler/GhostMask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.7037183e-30, -6.7416295e-11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MaskCamera/MaskHandler/GhostMask:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MaskHandler/GhostMask:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_00tjw"]
+resource_name = "put_on_ghost_mask"
+length = 2.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MaskCamera/MaskHandler/GhostMask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1.0032883, 1.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.0005646192, -0.51604843, -0.8266681), Vector3(0.00039574798, -0.25847694, -0.25811175), Vector3(0.00039574798, -0.25847694, -0.25811175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskCamera/MaskHandler/GhostMask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 1.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(-0.5973216, 0.18558785, -0.5465461), Vector3(0, -3.7037183e-30, -6.7416295e-11), Vector3(0, -3.7037183e-30, -6.7416295e-11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MaskCamera/MaskHandler/GhostMask:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 1.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MaskHandler/GhostMask:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.027908156),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x3vf3"]
+_data = {
+&"RESET": SubResource("Animation_od3ui"),
+&"put_on_ghost_mask": SubResource("Animation_00tjw")
+}
 
 [sub_resource type="Animation" id="Animation_xf5fp"]
 length = 0.001
@@ -86,13 +195,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="SmoothCamera" type="Camera3D" parent="CameraPivot" unique_id=2139477641]
 unique_name_in_owner = true
-transform = Transform3D(0.9999972, 0.0022542893, -0.0007242253, -0.0022536379, 0.999997, 0.0008942673, 0.0007262494, -0.0008926243, 0.99999934, 0, 0.3, 0)
+transform = Transform3D(0.9999972, 0.0022542858, -0.0007242356, -0.0022536379, 0.9999971, 0.000894259, 0.0007262494, -0.0008926244, 0.99999934, 0, 0.3, 0.55771726)
 top_level = true
 cull_mask = 1048573
+fov = 31.1
 script = ExtResource("2_j341n")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="CameraPivot/SmoothCamera" unique_id=263008674]
-remote_path = NodePath("../../../SubViewportContainer/SubViewport/WeaponCamera")
+remote_path = NodePath("../../../SubViewportContainer/SubViewport/MaskCamera")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=499435862]
 anchors_preset = 15
@@ -108,22 +218,28 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="WeaponCamera" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=600340749]
+[node name="MaskCamera" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=600340749]
 unique_name_in_owner = true
-transform = Transform3D(0.9999972, 0.0022542858, -0.0007242356, -0.0022536379, 0.9999971, 0.000894259, 0.0007262494, -0.0008926244, 0.99999934, 0, 0.3, 0)
+transform = Transform3D(0.9999972, 0.0022542858, -0.00072423567, -0.0022536379, 0.9999971, 0.000894259, 0.0007262494, -0.0008926244, 0.99999934, 0, 0.3, 0.55771726)
 cull_mask = 2
-fov = 45.0
+fov = 20.0
+near = 0.006
+far = 18.79
 
-[node name="MaskHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" unique_id=28866580 node_paths=PackedStringArray("weapons")]
+[node name="MaskHandler" type="Node3D" parent="SubViewportContainer/SubViewport/MaskCamera" unique_id=28866580 node_paths=PackedStringArray("masks")]
+unique_name_in_owner = true
 script = ExtResource("3_klx3t")
-weapons = [NodePath("SMG"), NodePath("Rifle")]
+masks = [NodePath("GhostMask")]
 
-[node name="Rifle" parent="SubViewportContainer/SubViewport/WeaponCamera/MaskHandler" unique_id=1991830043 instance=ExtResource("3_osktb")]
-transform = Transform3D(1, -6.747314e-11, 1.1641532e-10, -6.7416295e-11, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="GhostMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=147031964 instance=ExtResource("7_x3vf3")]
+transform = Transform3D(1, 6.7416295e-11, -3.7037183e-30, -6.7416295e-11, 1, 0, 3.7037183e-30, 2.4969e-40, 1, 0.00039574798, -0.25847694, -0.25811175)
+visible = false
 
-[node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/MaskHandler" unique_id=746674704 instance=ExtResource("3_bqsbk")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=2101422027]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_x3vf3")
 
-[node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera" unique_id=1369706745]
+[node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/MaskCamera" unique_id=1369706745]
 unique_name_in_owner = true
 script = ExtResource("6_r5ew0")
 
@@ -155,8 +271,9 @@ theme_override_constants/margin_bottom = 8
 
 [node name="TurnLabel" type="Label" parent="HUD" unique_id=949651348]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
 size_flags_vertical = 8
+localize_numeral_system = false
 text = "Player Turn"
 label_settings = SubResource("LabelSettings_va6lm")
 

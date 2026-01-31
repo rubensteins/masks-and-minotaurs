@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://di70wd7cb4d4f"]
+
+[ext_resource type="Script" uid="uid://bi58v63yqh1do" path="res://Assets/Masks/base_mask.gd" id="1_pewsu"]
+
+[node name="BaseMask" type="Node3D" unique_id=147031964]
+script = ExtResource("1_pewsu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=524727012]

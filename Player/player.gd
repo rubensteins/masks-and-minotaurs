@@ -15,8 +15,10 @@ class_name Player
 @onready var turn_label: Label = $HUD/TurnLabel
 
 @onready var smooth_camera: Camera3D = %SmoothCamera
-@onready var weapon_camera: Camera3D = %WeaponCamera
+@onready var weapon_camera: Camera3D = %MaskCamera
 @onready var grid: Grid = $"../Grid"
+
+@onready var mask_handler: Node3D = %MaskHandler
 
 # facing is an int between 0 and 3: 0 is north, 1 east, 2 south, 3 west
 
@@ -62,7 +64,6 @@ func update_turn_label() -> void:
 	turn_label.text = tt_text
 
 func _process(_delta: float) -> void:
-	
 	if Input.is_action_just_pressed("turn_left") and not is_animating:
 		var tween = create_tween()
 		var target = rotation_degrees.y + 90
