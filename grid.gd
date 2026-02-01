@@ -15,6 +15,9 @@ class_name Grid
 @export var mino_starting_y : int = 9
 @export var mino_height : float = 2.0
 
+@export_category("Props")
+@export var phylactery : PackedScene
+
 signal player_enemy_collission
 signal player_in_trap
 signal reached_end
@@ -38,8 +41,8 @@ func _ready() -> void:
 		[7,6,1,6,6,1,6,6,6,5],
 	]
 	traps_array = [
-		[0,1,0,0,0,0,0,0,0,0],
-		[5,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,5,0,0],
 		[0,0,0,1,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0],
@@ -64,6 +67,12 @@ func place_tile(x: int, y: int, type: int) -> void:
 	add_child(scene)
 	if scene is CellMesh:
 		var loc = get_center_point_for_cell(x,y)
+		if traps_array[y][x] == 5:
+			# place phylactery here
+			var phyl = phylactery.instantiate()
+			add_child(phyl)
+			phyl.global_position = get_center_point_for_cell(x,y)
+		
 		scene.place_at(loc)
 		# printt("Place: ", x,y,type, loc)	
 	

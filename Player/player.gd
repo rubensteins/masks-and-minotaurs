@@ -13,7 +13,7 @@ class_name Player
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var animation_player: AnimationPlayer = $DamageTexture/AnimationPlayer
 @onready var turn_label: Label = $HUD/TurnLabel
-@onready var mask_label: Label = $HUD/MaskLabel
+@onready var mask_label: Label = %MaskLabel
 @onready var exit_message: Label = $HUD/ExitMessage
 
 @onready var smooth_camera: Camera3D = %SmoothCamera
