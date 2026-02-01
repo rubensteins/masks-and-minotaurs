@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://rktopxtygk0g"]
 
-[ext_resource type="Material" uid="uid://s6t7o0ovhh7e" path="res://Assets/Materials/orange.tres" id="1_3k8rx"]
+[ext_resource type="Texture2D" uid="uid://27ufk56oo7ei" path="res://Enemy/minotaur.png" id="2_hv0ip"]
 [ext_resource type="Script" uid="uid://djtuddbk20a7d" path="res://Enemy/minotaur.gd" id="2_wqr3o"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1jyn"]
-material = ExtResource("1_3k8rx")
-
-[node name="Enemy" type="MeshInstance3D" unique_id=213172526]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_g1jyn")
+[node name="Enemy" type="Node3D" unique_id=239698301]
 script = ExtResource("2_wqr3o")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1885094513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0)
+pixel_size = 0.002
+billboard = 2
+texture = ExtResource("2_hv0ip")

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://h8kgxnf4i6ub" path="res://Assets/Masks/ghost_mark.tscn" id="6_apopc"]
 [ext_resource type="PackedScene" uid="uid://c0fwcrowt6i1f" path="res://UI/GameOverScreen.tscn" id="6_osktb"]
 [ext_resource type="Script" uid="uid://bfmikw5tg407c" path="res://Player/turn_handler.gd" id="6_r5ew0"]
-[ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="9_yhol4"]
+[ext_resource type="LabelSettings" uid="uid://bqlu0lqb1ffet" path="res://Assets/Masks/assets/labels.tres" id="9_x3vf3"]
 
 [sub_resource type="Animation" id="Animation_od3ui"]
 length = 0.001
@@ -339,10 +339,6 @@ _data = {
 &"TakeDamage": SubResource("Animation_osktb")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_va6lm"]
-font = ExtResource("9_yhol4")
-font_size = 64
-
 [node name="Player" type="CharacterBody3D" unique_id=1364246139 groups=["player"]]
 transform = Transform3D(0.9856564, 0.16876462, 0, -0.16876462, 0.9856564, 0, 0, 0, 1, 0, 0, 0)
 top_level = true
@@ -394,7 +390,7 @@ transform = Transform3D(0.71487516, 0.33772087, 0.122058414, -0.34379527, 0.5651
 visible = false
 
 [node name="SeerMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=147031964 instance=ExtResource("5_x3vf3")]
-transform = Transform3D(0.71487516, 0.33772087, 0.122058414, -0.34379527, 0.56511533, 0.44994393, 0.10372295, -0.45452103, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
+transform = Transform3D(0.71487516, 0.33772087, 0.12205841, -0.34379527, 0.56511533, 0.449944, 0.10372296, -0.4545211, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
 visible = false
 
 [node name="GhostMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=733575353 instance=ExtResource("6_apopc")]
@@ -441,7 +437,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 localize_numeral_system = false
 text = "Player Turn"
-label_settings = SubResource("LabelSettings_va6lm")
+label_settings = ExtResource("9_x3vf3")
+
+[node name="MaskLabel" type="Label" parent="HUD" unique_id=197993322]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Maskless Hero"
+label_settings = ExtResource("9_x3vf3")
+
+[node name="ExitMessage" type="Label" parent="HUD" unique_id=1525691630]
+layout_mode = 2
+label_settings = ExtResource("9_x3vf3")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOverScreen" parent="." unique_id=1950022593 instance=ExtResource("6_osktb")]
 visible = false

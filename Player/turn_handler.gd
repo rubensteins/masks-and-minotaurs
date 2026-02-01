@@ -6,6 +6,12 @@ signal legendary_mino
 
 var legendary_count : int = 0
 
+var current_mask : int :
+	get:
+		return current_mask
+	set (value):
+		current_mask = value
+
 var turn_tracker : int :
 	get:
 		return turn_tracker

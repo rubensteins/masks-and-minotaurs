@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bqlu0lqb1ffet"]
+
+[ext_resource type="FontFile" uid="uid://cdpix218y1mkp" path="res://Assets/UI/RubikStorm-Regular.ttf" id="1_ocgta"]
+
+[resource]
+font = ExtResource("1_ocgta")
+font_size = 64

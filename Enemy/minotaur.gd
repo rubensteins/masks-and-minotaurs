@@ -1,6 +1,7 @@
-extends MeshInstance3D
+extends Node3D
 
 @onready var grid: Grid = $"../Grid"
+@onready var sprite_3d: Sprite3D = $Sprite3D
 
 var do_legendary : bool = false
 
@@ -8,6 +9,12 @@ func _ready() -> void:
 	TurnHandler.mino_turn.connect(take_turn)
 	position = grid.get_new_mino_position(9, 9, 0)
 	TurnHandler.legendary_mino.connect(func() : do_legendary = true)
+
+func _process(_delta: float) -> void:
+	if TurnHandler.current_mask != 0:
+		sprite_3d.transparency = 1.0
+	else:
+		sprite_3d.transparency = 0.0
 
 func take_turn() -> void:
 	# normally, we do 2 moves, if we're legendary, we do 5!!!
@@ -42,7 +49,6 @@ func best_move() -> void:
 	var target_y = mino_y
 	
 	if canGoNorth:
-
 		var distance = Vector2(mino_x, mino_y + 1).distance_to(
 			Vector2(grid.player_x, grid.player_y))
 		if (distance < shortest_distance):
@@ -52,7 +58,6 @@ func best_move() -> void:
 			target_y = mino_y + 1
 		
 	if canGoEast:
-
 		var distance = Vector2(mino_x + 1, mino_y).distance_to(
 			Vector2(grid.player_x, grid.player_y))
 		if (distance < shortest_distance):
