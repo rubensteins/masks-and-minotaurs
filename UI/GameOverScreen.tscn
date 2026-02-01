@@ -62,12 +62,12 @@ horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=741157780]
 layout_mode = 2
-text = "Restart
+text = "Restart (A)
 "
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=517296975]
 layout_mode = 2
-text = "I'm Done"
+text = "I'm Done (B)"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

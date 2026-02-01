@@ -70,12 +70,12 @@ label_settings = SubResource("LabelSettings_t1pqt")
 
 [node name="StartButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=741157780]
 layout_mode = 2
-text = "Start
+text = "Start (A)
 "
 
 [node name="QuitButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=517296975]
 layout_mode = 2
-text = "Quit"
+text = "Quit (B)"
 
 [node name="About" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=304789489]
 layout_mode = 2
