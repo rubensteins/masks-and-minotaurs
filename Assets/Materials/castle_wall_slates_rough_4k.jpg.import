@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwa0uvoll3rdl"
 path.s3tc="res://.godot/imported/castle_wall_slates_rough_4k.jpg-1b738b06cb89e042886753a7d63c6a97.s3tc.ctex"
+path.etc2="res://.godot/imported/castle_wall_slates_rough_4k.jpg-1b738b06cb89e042886753a7d63c6a97.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Materials/castle_wall_slates_rough_4k.jpg"
-dest_files=["res://.godot/imported/castle_wall_slates_rough_4k.jpg-1b738b06cb89e042886753a7d63c6a97.s3tc.ctex"]
+dest_files=["res://.godot/imported/castle_wall_slates_rough_4k.jpg-1b738b06cb89e042886753a7d63c6a97.s3tc.ctex", "res://.godot/imported/castle_wall_slates_rough_4k.jpg-1b738b06cb89e042886753a7d63c6a97.etc2.ctex"]
 
 [params]
 

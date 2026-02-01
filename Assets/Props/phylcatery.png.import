@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://wgfjg7c8gkk7"
 path.s3tc="res://.godot/imported/phylcatery.png-cc4801e6cdc1ed36b63f0ea7a52ff92d.s3tc.ctex"
+path.etc2="res://.godot/imported/phylcatery.png-cc4801e6cdc1ed36b63f0ea7a52ff92d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Props/phylcatery.png"
-dest_files=["res://.godot/imported/phylcatery.png-cc4801e6cdc1ed36b63f0ea7a52ff92d.s3tc.ctex"]
+dest_files=["res://.godot/imported/phylcatery.png-cc4801e6cdc1ed36b63f0ea7a52ff92d.s3tc.ctex", "res://.godot/imported/phylcatery.png-cc4801e6cdc1ed36b63f0ea7a52ff92d.etc2.ctex"]
 
 [params]
 

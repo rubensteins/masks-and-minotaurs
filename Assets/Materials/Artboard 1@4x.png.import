@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds0fqh0ink5nc"
 path.s3tc="res://.godot/imported/Artboard 1@4x.png-25dbe5d72d49ccafda6e12e9ea2607ad.s3tc.ctex"
+path.etc2="res://.godot/imported/Artboard 1@4x.png-25dbe5d72d49ccafda6e12e9ea2607ad.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Materials/Artboard 1@4x.png"
-dest_files=["res://.godot/imported/Artboard 1@4x.png-25dbe5d72d49ccafda6e12e9ea2607ad.s3tc.ctex"]
+dest_files=["res://.godot/imported/Artboard 1@4x.png-25dbe5d72d49ccafda6e12e9ea2607ad.s3tc.ctex", "res://.godot/imported/Artboard 1@4x.png-25dbe5d72d49ccafda6e12e9ea2607ad.etc2.ctex"]
 
 [params]
 
