@@ -90,7 +90,11 @@ Merriweather: https://fonts.google.com/specimen/Merriweather
 Title screen Photo by Mikael Dubarry, modified by me
 https://www.pexels.com/photo/sunlit-ancient-castle-interior-in-france-34271797/
 
-All other art originally drawn for Global Game Jam 2026 - 30-01 to 01-02"
+Sounds:
+Cow Moo three times by manofham -- https://freesound.org/s/698969/ CC0
+Right Gravel Footstep 2 by Ali_6868 -- https://freesound.org/s/384876/ CC0
+
+All other art and music is original and made for Global Game Jam 2026 - 30-01 to 01-02"
 label_settings = SubResource("LabelSettings_yw5tw")
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_restart_button_pressed"]

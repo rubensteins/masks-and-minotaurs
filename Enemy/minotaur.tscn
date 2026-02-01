@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://rktopxtygk0g"]
 
 [ext_resource type="Texture2D" uid="uid://27ufk56oo7ei" path="res://Enemy/minotaur.png" id="2_hv0ip"]
+[ext_resource type="AudioStream" uid="uid://cj5poc8dnyx4p" path="res://Assets/Sound/moo.ogg" id="2_pp4po"]
 [ext_resource type="Script" uid="uid://djtuddbk20a7d" path="res://Enemy/minotaur.gd" id="2_wqr3o"]
+[ext_resource type="AudioStream" uid="uid://dmwr5f1pdyxt2" path="res://Assets/Sound/footstep.wav" id="4_pp4po"]
 
 [node name="Enemy" type="Node3D" unique_id=239698301]
 script = ExtResource("2_wqr3o")
@@ -11,3 +13,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0)
 pixel_size = 0.002
 billboard = 2
 texture = ExtResource("2_hv0ip")
+
+[node name="Moo" type="AudioStreamPlayer3D" parent="." unique_id=1659972493]
+stream = ExtResource("2_pp4po")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=675286596]
+stream = ExtResource("4_pp4po")
+volume_db = 59.321
+unit_size = 44.93
