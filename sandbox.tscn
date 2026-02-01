@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dhngyf288pqgs" path="res://Assets/LevelTiles/cell_14.tscn" id="17_pnsw4"]
 [ext_resource type="PackedScene" uid="uid://dy5weketdfjh2" path="res://Assets/LevelTiles/cell_15.tscn" id="18_c0501"]
 [ext_resource type="PackedScene" uid="uid://dwlvb1dn3fdsj" path="res://Assets/Props/phylactery.tscn" id="18_pnsw4"]
+[ext_resource type="PackedScene" uid="uid://cdtqc4qfq3h3e" path="res://Assets/Props/trap_warning.tscn" id="19_c0501"]
 [ext_resource type="PackedScene" uid="uid://rktopxtygk0g" path="res://Enemy/minotaur.tscn" id="19_q6o5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6o5f"]
@@ -41,6 +42,7 @@ script = ExtResource("2_p7lbm")
 tiles = Array[PackedScene]([ExtResource("3_igx0j"), ExtResource("4_igx0j"), ExtResource("5_igx0j"), ExtResource("6_tctsc"), ExtResource("7_ai2o8"), ExtResource("8_rgx3o"), ExtResource("9_b8cfi"), ExtResource("10_tihu5"), ExtResource("11_g1jyn"), ExtResource("12_q6o5f"), ExtResource("4_tctsc"), ExtResource("5_ai2o8"), ExtResource("6_luwg1"), ExtResource("7_nmhe3"), ExtResource("17_pnsw4"), ExtResource("18_c0501")])
 mino_height = 3.0
 phylactery = ExtResource("18_pnsw4")
+trap = ExtResource("19_c0501")
 
 [node name="Roof" type="CSGBox3D" parent="." unique_id=504524275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9922256, 0)

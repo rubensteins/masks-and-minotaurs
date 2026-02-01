@@ -17,6 +17,7 @@ class_name Grid
 
 @export_category("Props")
 @export var phylactery : PackedScene
+@export var trap : PackedScene
 
 signal player_enemy_collission
 signal player_in_trap
@@ -72,6 +73,11 @@ func place_tile(x: int, y: int, type: int) -> void:
 			var phyl = phylactery.instantiate()
 			add_child(phyl)
 			phyl.global_position = get_center_point_for_cell(x,y)
+		
+		if traps_array[y][x] == 1:
+			var t = trap.instantiate()
+			add_child(t)
+			t.global_position = get_center_point_for_cell(x,y)
 		
 		scene.place_at(loc)
 		# printt("Place: ", x,y,type, loc)	
