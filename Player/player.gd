@@ -20,6 +20,10 @@ class_name Player
 @onready var weapon_camera: Camera3D = %MaskCamera
 @onready var grid: Grid = $"../Grid"
 
+@onready var hunter_picto: TextureRect = $HUD/VBoxContainer/HBoxContainer/HunterPicto
+@onready var ghost_picto: TextureRect = $HUD/VBoxContainer/HBoxContainer/GhostPicto
+@onready var oracle_picto: TextureRect = $HUD/VBoxContainer/HBoxContainer/OraclePicto
+
 @onready var mask_handler: Node3D = %MaskHandler
 
 # facing is an int between 0 and 3: 0 is north, 1 east, 2 south, 3 west
@@ -73,13 +77,22 @@ func update_mask_label(mask_id: int) -> void:
 	var mask_display_text = "Maskless Hero"
 	match mask_id:
 		0: 
-			mask_display_text = "Mask of the Hunder"
+			mask_display_text = "Mask of the Hunder"	
+			hunter_picto.modulate.a = 1.0
+			oracle_picto.modulate.a = 0.3
+			ghost_picto.modulate.a = 0.3		
 		1: 
 			mask_display_text = "Mask of the Ghostshroud"
+			hunter_picto.modulate.a = 0.3
+			oracle_picto.modulate.a = 0.3
+			ghost_picto.modulate.a = 1.0		
 		2: 
 			mask_display_text = "Mask of the Oracle"
+			hunter_picto.modulate.a = 0.3
+			oracle_picto.modulate.a = 1.0
+			ghost_picto.modulate.a = 0.3		
 	mask_label.text = mask_display_text
-	
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("turn_left") and not is_animating:
 		var tween = create_tween()

@@ -401,7 +401,7 @@ transform = Transform3D(0.71487516, 0.33772087, 0.122058414, -0.34379527, 0.5651
 visible = false
 
 [node name="SeerMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=147031964 instance=ExtResource("5_x3vf3")]
-transform = Transform3D(0.71487516, 0.3377209, 0.12205843, -0.34379527, 0.56511533, 0.44994402, 0.10372295, -0.45452112, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
+transform = Transform3D(0.71487516, 0.3377209, 0.122058436, -0.34379527, 0.56511533, 0.44994402, 0.10372295, -0.45452112, 0.6501171, 0.0005646192, -0.51604843, -0.826668)
 visible = false
 
 [node name="GhostMask" parent="SubViewportContainer/SubViewport/MaskCamera/MaskHandler" unique_id=733575353 instance=ExtResource("6_apopc")]
@@ -466,7 +466,7 @@ texture = ExtResource("10_p5o4e")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="HunterPicto2" type="TextureRect" parent="HUD/VBoxContainer/HBoxContainer" unique_id=2080452917]
+[node name="GhostPicto" type="TextureRect" parent="HUD/VBoxContainer/HBoxContainer" unique_id=2080452917]
 clip_contents = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
@@ -474,7 +474,7 @@ texture = ExtResource("11_gu6f8")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="HunterPicto3" type="TextureRect" parent="HUD/VBoxContainer/HBoxContainer" unique_id=734476832]
+[node name="OraclePicto" type="TextureRect" parent="HUD/VBoxContainer/HBoxContainer" unique_id=734476832]
 clip_contents = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
@@ -503,6 +503,7 @@ size_flags_vertical = 3
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2095601551]
 stream = ExtResource("15_dkpta")
+volume_db = -15.673
 autoplay = true
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=448130120]

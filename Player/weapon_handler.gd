@@ -5,6 +5,8 @@ class_name MaskHandler
 @export var masks : Array[Node3D]
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var is_first_mask_ever = true
+
 var active_mask : int :
 	get:
 		return active_mask
@@ -12,7 +14,7 @@ var active_mask : int :
 var is_mask_on : bool = false
 	
 func equip(new_mask_index : int) -> void:
-	if new_mask_index != active_mask:
+	if new_mask_index != active_mask or is_first_mask_ever:
 		masks[active_mask].visible = false
 		masks[new_mask_index].visible = true
 		masks[new_mask_index].set_process(true)
@@ -25,6 +27,7 @@ func equip(new_mask_index : int) -> void:
 			animation_player.play("mask_4")
 		TurnHandler.current_mask = new_mask_index
 		is_mask_on = true
+		is_first_mask_ever = false
 
 func unequip(mask_index) -> void:
 	is_mask_on = false
