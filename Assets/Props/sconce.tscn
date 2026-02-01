@@ -47,3 +47,8 @@ explosiveness = 0.1
 trail_lifetime = 0.37
 process_material = SubResource("ParticleProcessMaterial_fw7jw")
 draw_pass_1 = SubResource("QuadMesh_0f37k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1557049268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518246, 0)
+light_color = Color(1, 0.7921569, 0.40784314, 1)
+light_energy = 0.5
