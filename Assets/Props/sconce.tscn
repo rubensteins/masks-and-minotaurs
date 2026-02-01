@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://crdn8xllqndsb"]
+
+[ext_resource type="PackedScene" uid="uid://na2xv58fyu0o" path="res://Assets/Props/uploads_files_2893308_Wall_Sconce_OBJ.obj" id="1_kpt8y"]
+[ext_resource type="Texture2D" uid="uid://ce80btbngonkh" path="res://Assets/Props/pngimg.com - smoke_PNG969.png" id="2_4fw7m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fw7m"]
+albedo_color = Color(0.3642571, 0.19570288, 0.15637997, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6s74"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_4fw7m")
+emission_enabled = true
+emission = Color(0.9833035, 0.73901355, 0.29030797, 1)
+emission_energy_multiplier = 3.0
+billboard_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4fw7m"]
+offsets = PackedFloat32Array(0, 0.51724136, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.49411765)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6s74"]
+gradient = SubResource("Gradient_4fw7m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fw7jw"]
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 1
+emission_sphere_radius = 0.5
+spread = 19.864
+gravity = Vector3(0, 2, 0)
+color_ramp = SubResource("GradientTexture1D_p6s74")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0f37k"]
+size = Vector2(0.2, 0.2)
+
+[node name="Sconce" unique_id=791946150 instance=ExtResource("1_kpt8y")]
+
+[node name="Wall_Sconce_Mesh_002" parent="." index="0" unique_id=1055261611]
+material_override = SubResource("StandardMaterial3D_4fw7m")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1" unique_id=37662325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0140476525, 0.55270356, 0.009883285)
+material_override = SubResource("StandardMaterial3D_p6s74")
+amount = 5
+lifetime = 0.5
+explosiveness = 0.1
+trail_lifetime = 0.37
+process_material = SubResource("ParticleProcessMaterial_fw7jw")
+draw_pass_1 = SubResource("QuadMesh_0f37k")

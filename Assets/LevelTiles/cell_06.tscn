@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bo3yyf14hvsya" path="res://Assets/LevelTiles/cell_0.tscn" id="1_pqlpc"]
 [ext_resource type="Material" uid="uid://dbeiplh2hmsft" path="res://Assets/Materials/wall.tres" id="2_k1uc8"]
+[ext_resource type="PackedScene" uid="uid://crdn8xllqndsb" path="res://Assets/Props/sconce.tscn" id="3_k1uc8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_176eh"]
 size = Vector3(1, 3, 0.05)
@@ -17,3 +18,6 @@ mesh = SubResource("BoxMesh_176eh")
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 3, 0.95)
 material_override = ExtResource("2_k1uc8")
 mesh = SubResource("BoxMesh_176eh")
+
+[node name="Sconce" parent="." index="3" unique_id=791946150 instance=ExtResource("3_k1uc8")]
+transform = Transform3D(-0.019232323, 0, -0.99981505, 0, 1, 0, 0.99981505, 0, -0.019232323, 0, 1, -0.6878074)
