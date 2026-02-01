@@ -9,11 +9,11 @@ size = Vector3(1, 3, 0.05)
 [node name="CellMesh" unique_id=1668955190 instance=ExtResource("1_pqlpc")]
 
 [node name="Wall" type="MeshInstance3D" parent="." index="1" unique_id=91003468]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3, -1)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3, -0.95)
 material_override = ExtResource("2_k1uc8")
 mesh = SubResource("BoxMesh_176eh")
 
 [node name="Wall2" type="MeshInstance3D" parent="." index="2" unique_id=296349174]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 3, 1)
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 3, 0.95)
 material_override = ExtResource("2_k1uc8")
 mesh = SubResource("BoxMesh_176eh")
